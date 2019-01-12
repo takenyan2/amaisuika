@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  send_address: MyString
+  send_name: MyString
+  send_postal_code: 1
+  send_status: MyString
+  purchase_at: MyString
+
+two:
+  user_id: 1
+  send_address: MyString
+  send_name: MyString
+  send_postal_code: 1
+  send_status: MyString
+  purchase_at: MyString

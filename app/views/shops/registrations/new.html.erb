@@ -1,0 +1,54 @@
+<h2>新しいお店をつくる</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :都道府県 %><br />
+    <%= f.select :prefectures,Shop.prefectures.keys, {prompt: '選択してください'}, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :お店の名前 %><br />
+    <%= f.text_field :shop_name, autofocus: true, autocomplete: "shop_name", placeholder:"お店の名前を記入" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :お店の説明 %><br />
+    <%= f.text_area :shop_introduction, autofocus: true, placeholder:"お店のコンセプトや情報を記入" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :発送までの期間 %><br />
+    <%= f.number_field :send_period, autofocus: true, autocomplete: "send_period", placeholder:"半角数字を記入" %>日以内に商品を発送します
+  </div>
+
+  <div class="field">
+    <%= f.label :お問合せ先の電話番号 %><br />
+    <%= f.text_field :shop_phone_number, autofocus: true, autocomplete: "shop_phone_number", placeholder:"電話番号を記入" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレスを記入" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワードを設定%>
+    <% if @minimum_password_length %>
+    <em>(※<%= @minimum_password_length %> 文字以上の半角英数字で記入してください)</em>
+    <% end %><br />
+    <%= f.password_field :encrypted_password, autocomplete: "new-password", placeholder:"パスワードを記入" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :上記と同じパスワードを入力 %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"パスワードを記入" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "新しいお店を作る" %>
+  </div>
+<% end %>
+
+<%= render "shops/shared/links" %>
