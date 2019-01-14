@@ -50,28 +50,6 @@ ActiveRecord::Schema.define(version: 2019_01_10_082011) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "perchase_histories", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "send_address"
-    t.string "send_name"
-    t.integer "send_postal_code"
-    t.string "send_status"
-    t.string "purchase_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "perchase_items", force: :cascade do |t|
-    t.integer "purchase_history_id"
-    t.string "purchase_product_name"
-    t.string "purchase_product_image_id"
-    t.integer "purchase_product_price"
-    t.integer "purchase_product_quantity"
-    t.integer "purchase_product_total_price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.integer "shop_id"
     t.string "product_name"
@@ -80,6 +58,29 @@ ActiveRecord::Schema.define(version: 2019_01_10_082011) do
     t.integer "product_price"
     t.integer "product_stock"
     t.boolean "permission", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "purchase_histories", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "send_address"
+    t.string "send_name"
+    t.integer "send_postal_code"
+    t.string "send_status", default: "受注"
+    t.string "purchase_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "purchase_items", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "purchase_history_id"
+    t.string "purchase_product_name"
+    t.string "purchase_product_image_id"
+    t.integer "purchase_product_price"
+    t.integer "purchase_product_quantity"
+    t.integer "purchase_product_total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -5,6 +5,8 @@ class User < ApplicationRecord
   	 devise :database_authenticatable, :registerable,
             :recoverable, :rememberable, :validatable
 
+      enum user_status: { 一般ユーザー:0, 管理者:1 }
+
      has_many :follows, dependent: :destroy
      has_many :carts, dependent: :destroy
      has_many :favorites, dependent: :destroy

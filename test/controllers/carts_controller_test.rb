@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class CartItemsControllerTest < ActionDispatch::IntegrationTest
+class CartsControllerTest < ActionDispatch::IntegrationTest
   test "should get show" do
-    get cart_items_show_url
+    get carts_show_url
     assert_response :success
   end
 
   test "should get create" do
-    get cart_items_create_url
+    get carts_create_url
     assert_response :success
   end
 
   test "should get destroy" do
-    get cart_items_destroy_url
+    get carts_destroy_url
     assert_response :success
   end
 

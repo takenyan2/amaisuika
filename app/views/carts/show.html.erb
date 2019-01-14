@@ -1,0 +1,57 @@
+<h2>カートの中身</h2>
+				<% @carts.each do |cart| %>
+				<% a = cart.product %>
+				    <h4>商品名</h4>
+				    	<%= a.product_name %>
+				    <% a.images.each do |image| %>
+						<%= attachment_image_tag image, :product_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300" %>
+						<% end %>
+				    <h4>値段</h4>
+				    	<%= a.product_price %>円
+				    <h4>購入個数</h4>
+				    	<%= cart.product_quantity %>個
+					<%= link_to "カートから削除", cart_path(cart.id), method: :delete, class: "btn btn-danger" %>
+			    <% end %>
+		    </div>
+
+		    <% if @carts.empty? %>
+		     <h3>カートに商品がありません。</h3>
+		     <% else %>
+
+		    <div>
+		     	<h3>総計:<%= @total_price %>円</h3>
+		     	<input type="radio" name="btn" id="a" checked="checked">登録されている住所に送る
+		     	<input type="radio" name="btn" id="b">他の住所に送る
+		     	<div class="text text01">
+		     	<strong><%= current_user.address %></strong>に送る<br>
+		     		<%= form_for @purchase, url: purchase_histories_path(buy1: ""), method: :post do |f| %>
+		     			<%= f.hidden_field :send_postal_code, :value => current_user.postal_code %>
+		     			<%= f.hidden_field :send_name, :value => current_user.user_name %>
+		     			<%= f.hidden_field :send_address , :value => current_user.address  %>
+		     			<%= f.hidden_field :@total_price , :value => @total_price  %>
+		     			<%= f.submit "購入する" %>
+		     		<% end %>
+		     	</div>
+		     	<div class="text text02" style="color: black; margin-top: 10px;">
+		     		<%= form_for @purchase, url: purchase_histories_path do |f| %>
+		     			<p style="color :black;">送付先郵便番号</p><%= f.text_field :send_postal_code %>
+		     			<p style="color :black;">送付先宛名</p><%= f.text_field :send_name %>
+		     			<p style="color :black;">送付先住所</p><%= f.text_area :send_address %><br />
+		     			<%= f.submit "購入する", class: "btn btn-success", style: "margin-top: 5px;" %>
+		     		<% end %>
+		     	</div>
+		     </div>
+		     <% end %>
+<script>
+$(function() {
+  $('[name="btn"]:radio').change( function() {
+    if($('[id=a]').prop('checked')){
+      $('.text').fadeOut();
+      $('.text01').fadeIn();
+    } else if ($('[id=b]').prop('checked')) {
+      $('.text').fadeOut();
+      $('.text02').fadeIn();
+    }
+  });
+});
+</script>

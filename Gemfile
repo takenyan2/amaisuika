@@ -77,4 +77,4 @@ gem 'pagy'
 
 gem "pry-rails"
 
-
+gem 'kaminari','~> 1.1.1'

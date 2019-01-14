@@ -1,2 +1,17 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<h1>商品詳細ページ</h1>
+			商品名：<%= @product.product_name %></br>
+			<% @product.images.each do |image| %>
+			<%= attachment_image_tag image, :product_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300" %></br>
+			<% end %>
+			商品紹介：<%= @product.product_introduction %></br>
+			価格：<%= @product.product_price %></br>
+			在庫数：<%= @product.product_stock %></br>
+			<%= form_for(@carts) do |f| %>
+
+			<%= f.hidden_field :user_id, :value => 2 %>
+			<%#= f.hidden_field :user_id, :value => current_user.id %>
+
+			<%= f.hidden_field :product_id, :value => @product.id %>
+			<%= f.select :product_quantity,(0..@product.product_stock).to_a %>個
+			<%= f.submit "カートに入れる" %>
+			<% end %>

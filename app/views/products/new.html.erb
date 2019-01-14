@@ -1,6 +1,8 @@
 <h1>新規商品追加ページ</h1>
 
 	<%= form_for @product do |f| %>
+		<%= f.hidden_field :shop_id,  :value => 1 %>
+		<%# f.hidden_field :shop_id, :value => current_shop.id %>
 		商品名
 		<%= f.text_field :product_name %></br>
 		商品の説明
@@ -8,6 +10,6 @@
 		<%= f.select :product_genre, [["あまいスイカ(飲食物)", "飲食物"], ["あまいスイカGoods(飲食物以外)", "Goods"]] %></br>
 		値段：<%= f.number_field :product_price %>円</br>
 		在庫：<%= f.number_field :product_stock %>個</br>
-	    <%#= f.attachment_field :images_product_image, multiple: true %></p>
+	    <%= f.attachment_field :images_product_images, multiple: true %></p>
 	<%= f.submit "追加する" %>
 	<% end %>
