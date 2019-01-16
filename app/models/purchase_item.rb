@@ -1,5 +1,5 @@
 class PurchaseItem < ApplicationRecord
-	belongs_to :perchase_history, optional: true
+	belongs_to :purchase_history, optional: true
 	belongs_to :product
 
 	validates :purchase_history_id, presence: true

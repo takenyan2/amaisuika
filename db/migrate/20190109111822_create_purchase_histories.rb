@@ -6,7 +6,7 @@ class CreatePurchaseHistories < ActiveRecord::Migration[5.2]
       t.string :send_name
       t.integer :send_postal_code
       t.string :send_status, default: "受注"
-      t.string :purchase_at
+      t.date :purchase_at
 
       t.timestamps
     end

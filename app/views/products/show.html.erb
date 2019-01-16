@@ -3,15 +3,36 @@
 			<% @product.images.each do |image| %>
 			<%= attachment_image_tag image, :product_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300" %></br>
 			<% end %>
+
+
+          	<% if user_signed_in? %>
+          		<% if @product.favorited_by?(current_user) %>
+              <%= link_to  product_favorites_path(@product), method: :delete do %>
+                <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+                <% end %>
+              <%= @product.favorites.count %>お気に入り
+        <% else %>
+            <%= link_to  product_favorites_path(@product), method: :post do %>
+                  <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: gray;"></span>
+            <% end %>
+            <%= @product.favorites.count %>お気に入り
+          </div>
+         <% end %>
+         <% end %>
+
 			商品紹介：<%= @product.product_introduction %></br>
 			価格：<%= @product.product_price %></br>
 			在庫数：<%= @product.product_stock %></br>
-			<%= form_for(@carts) do |f| %>
+			<% if @product.product_stock == 0 %>
+				<%= "在庫がありません" %>
+			<% else %>
+				<%= form_for(@carts) do |f| %>
 
-			<%= f.hidden_field :user_id, :value => 2 %>
-			<%#= f.hidden_field :user_id, :value => current_user.id %>
+				<%#= f.hidden_field :user_id, :value => 2 %>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
 
-			<%= f.hidden_field :product_id, :value => @product.id %>
-			<%= f.select :product_quantity,(0..@product.product_stock).to_a %>個
-			<%= f.submit "カートに入れる" %>
+				<%= f.hidden_field :product_id, :value => @product.id %>
+				<%= f.select :product_quantity,(0..@product.product_stock).to_a %>個
+				<%= f.submit "カートに入れる" %>
+				<% end %>
 			<% end %>

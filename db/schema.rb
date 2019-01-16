@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2019_01_10_082011) do
     t.string "send_name"
     t.integer "send_postal_code"
     t.string "send_status", default: "受注"
-    t.string "purchase_at"
+    t.date "purchase_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

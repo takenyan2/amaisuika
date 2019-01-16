@@ -1,5 +1,6 @@
 class PurchaseHistory < ApplicationRecord
 	belongs_to :user
+	has_many :purchase_items
 
 	# validates :user_id, presence: true
 	validates :send_address, presence: true

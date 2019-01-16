@@ -11,6 +11,7 @@ class User < ApplicationRecord
      has_many :carts, dependent: :destroy
      has_many :favorites, dependent: :destroy
      has_many :comments, dependent: :destroy
+     has_many :purchase_histories
 
      has_many :shops, through: :follows
   	 has_many :products, through: :favorites

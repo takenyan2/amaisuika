@@ -56,16 +56,15 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (9.4.4)
+    autoprefixer-rails (9.4.5)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
-    bootstrap (4.1.3)
-      autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.9, < 2)
-      sass (>= 3.5.2)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     byebug (10.0.2)
     capybara (3.12.0)
@@ -99,13 +98,11 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.6.0)
-    dotenv-rails (2.6.0)
-      dotenv (= 2.6.0)
-      railties (>= 3.2, < 6.0)
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.10.0)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     http-cookie (1.0.3)
@@ -161,7 +158,6 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pagy (1.2.1)
-    popper_js (1.14.5)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -278,13 +274,13 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
-  bootstrap (~> 4.1.1)
+  bootstrap-sass (~> 3.3.6)
   byebug
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
-  dotenv-rails
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.1.1)

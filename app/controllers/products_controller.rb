@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @carts = Cart.new
+    @favorite = Favorite.new
   end
 
   def edit

@@ -17,4 +17,8 @@ class Product < ApplicationRecord
     validates :product_genre, presence: true
     validates :product_price, presence: true
     validates :product_stock, presence: true
+
+    def favorited_by?(id)
+        favorites.where(user_id: id).exists?
+    end
 end
