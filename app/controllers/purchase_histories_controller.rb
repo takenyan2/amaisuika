@@ -20,7 +20,6 @@ class PurchaseHistoriesController < ApplicationController
 				@purchase_i.purchase_product_total_price = 0
 				@purchase_i.purchase_product_total_price += @purchase_i.purchase_product_price * @purchase_i.purchase_product_quantity
 				a = cart.product
-
 				a.images.each do |image|
 					@purchase_i.purchase_product_image_id = image.product_image_id
 				end
@@ -33,7 +32,7 @@ class PurchaseHistoriesController < ApplicationController
 		        	p.product_stock -= @purchase_i.purchase_product_quantity
 		        	p.update(product_stock: p.product_stock)
 	        	end
-	        	
+
 			end
 			@carts.destroy_all
 		    redirect_to new_purchase_history_path
