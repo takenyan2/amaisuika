@@ -1,8 +1,8 @@
 <h1>新規商品追加ページ</h1>
 
 	<%= form_for @product do |f| %>
-		<%= f.hidden_field :shop_id,  :value => 1 %>
-		<%# f.hidden_field :shop_id, :value => current_shop.id %>
+		<%#= f.hidden_field :shop_id,  :value => 1 %>
+		<%= f.hidden_field :shop_id, :value => current_shop.id %>
 		商品名
 		<%= f.text_field :product_name %></br>
 		商品の説明

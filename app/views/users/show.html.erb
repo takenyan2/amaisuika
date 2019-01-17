@@ -6,7 +6,6 @@
 		<%= link_to "ユーザー情報を編集", edit_user_path(current_user.id) ,class: "btn btn-primary user-edit" ,style: "color: white;" %></br>
      	<%=link_to "退会する", user_path(@user), "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger",style: "margin-top: 10px;" %>
 
-
      	<h2>お気に入り商品一覧</h2>
      	<% @user.favorites.each do |f| %>
      		<% a = f.product %>
@@ -19,17 +18,19 @@
      		商品紹介<%= a.product_introduction %></br>
      	<% end %>
 
-
-
      	<h2>購入履歴</h2>
-     	<% @user.purchase_histories.each do |p| %>
-     			<% p.purchase_items.each do |c| %>
-     					購入商品画像：<%#= attachment_image_tag c, :purchase_product_image,  format: 'jpeg', size: "95x95" %></br>
-     			<% end %>
-     	<% end %>
-     					購入商品名：<%= @item_name %></br>
-     					購入価格<%= @item_price %></br>
-     					購入個数<%= @item_quantity %></br>
-     					ステータス：<%= @item_status %></br>
-     					小計：<%= @item_total_price %></br>
-     					総計<%#= total_price %>円
+     	<% @user.purchase_histories.each do |pur| %>
+     		<% pur.purchase_items.each do |c| %>
+     			購入商品画像：<%#= attachment_image_tag c, :purchase_product_image,  format: 'jpeg', size: "95x95" %></br>
+		    <% end %>
+        <% end %>
+
+        <% @a.each do |a|%>
+           日付：<%= a[1] %>
+           購入商品名：<%#= a[2] %></br>
+           購入価格<%#= a[3] %></br>
+           購入個数<%#= a[4] %></br>
+           ステータス：<%#= a[5] %></br>
+           小計：<%#= a[6] %></br>
+           総計<%= a[0] %>円
+        <% end %>

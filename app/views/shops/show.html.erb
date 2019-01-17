@@ -2,6 +2,22 @@
 		店名：<%= @shop.shop_name %>
 		<%= @shop.prefecture %></br>
 		<%= attachment_image_tag @shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300", class: "user-image" %></br>
+
+		<% if user_signed_in? %>
+          	<% if @shop.favorited_by?(current_user) %>
+              	<%= link_to shop_follows_path(@shop), method: :delete do %>
+                	<%= image_tag("/42886.jpg", :size => "60x60") %>
+             	<% end %>
+            <%= @shop.follows.count %>フォロワー
+        <% else %>
+            <%= link_to shop_follows_path(@shop), method: :post do %>
+                  <%= image_tag("/42884.jpg", :size => "60x60") %>
+            <% end %>
+            <%= @shop.follows.count %>フォロワー
+         	<% end %>
+        <% end %>
+
+
 		店舗情報：<%= @shop.shop_introduction %></br>
 		配送期間<%= @shop.send_period %>日以内</br>
 		お問合せ先：<%= @shop.shop_phone_number %></br>
@@ -16,6 +32,10 @@
 			商品紹介：<%=product.product_introduction %></br>
 			価格：<%=product.product_price %></br>
 			在庫数：<%=product.product_stock %></br>
+			<% if shop_signed_in? %>
+				<%=link_to "この商品を編集", edit_product_path %>
+				<%=link_to "この商品を削除", product_path, "data-confirm" => "本当に削除しますか？", method: :delete %>
+			<% end %>
 		<% end %>
 		<% end %>
 

@@ -1,38 +1,61 @@
 <h1>商品詳細ページ</h1>
-			商品名：<%= @product.product_name %></br>
+			商品名：<%= @product.product_name %> 【評価：<%= @review_average %>】</br>
 			<% @product.images.each do |image| %>
 			<%= attachment_image_tag image, :product_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300" %></br>
 			<% end %>
-
-
-          	<% if user_signed_in? %>
-          		<% if @product.favorited_by?(current_user) %>
-              <%= link_to  product_favorites_path(@product), method: :delete do %>
-                <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-                <% end %>
-              <%= @product.favorites.count %>お気に入り
-        <% else %>
-            <%= link_to  product_favorites_path(@product), method: :post do %>
-                  <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: gray;"></span>
-            <% end %>
-            <%= @product.favorites.count %>お気に入り
-          </div>
-         <% end %>
-         <% end %>
-
 			商品紹介：<%= @product.product_introduction %></br>
 			価格：<%= @product.product_price %></br>
 			在庫数：<%= @product.product_stock %></br>
+
+        <% if user_signed_in? %>
+          	<% if @product.favorited_by?(current_user) %>
+              	<%= link_to  product_favorites_path(@product), method: :delete do %>
+                	<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+             	<% end %>
+            	<%= @product.favorites.count %>お気に入り
+        	<% else %>
+            	<%= link_to  product_favorites_path(@product), method: :post do %>
+                  <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: gray;"></span>
+            	<% end %>
+            	<%= @product.favorites.count %>お気に入り
+         	<% end %>
+
 			<% if @product.product_stock == 0 %>
 				<%= "在庫がありません" %>
 			<% else %>
 				<%= form_for(@carts) do |f| %>
 
-				<%#= f.hidden_field :user_id, :value => 2 %>
-				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<%= f.hidden_field :user_id, :value => 2 %>
+				<%#= f.hidden_field :user_id, :value => current_user.id %>
 
 				<%= f.hidden_field :product_id, :value => @product.id %>
 				<%= f.select :product_quantity,(0..@product.product_stock).to_a %>個
 				<%= f.submit "カートに入れる" %>
 				<% end %>
 			<% end %>
+		<% elsif shop_signed_in? %>
+			<%=link_to "この商品を編集", edit_product_path %>
+			<%=link_to "この商品を削除", product_path, "data-confirm" => "本当に削除しますか？", method: :delete %>
+		<% end %>
+
+
+
+			<% if user_signed_in? %>
+				<%= form_for [@product, @comment] do |f| %>
+      			<h3>コメント記入</h3>
+      				この商品の評価：<%= f.select :review, [[ 1, 1 ], [ 2, 2 ], [ 3, 3 ], [ 4, 4 ], [ 5, 5 ]] %></br>
+          			<%= f.text_area :comment, placeholder: "コメントを記入" %></br>
+          			<%= f.submit "送信する" %>
+        		<% end %>
+        	<% end %>
+
+
+
+
+
+    		<h3>コメント一覧</h3>
+      			<% @product.comments.each do |comment| %>
+            	<%= attachment_image_tag  comment.user, :user_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %>
+		        この商品への評価：<%= comment.review %></br>
+	            コメント：<%= comment.comment %></br>
+      			<% end %>

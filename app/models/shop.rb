@@ -17,6 +17,7 @@ class Shop < ApplicationRecord
   }
 
     has_many :products, dependent: :destroy
+    has_many :follows, dependent: :destroy
 
   	has_many :users, through: :follows
   	has_many :carts, through: :products
@@ -28,4 +29,8 @@ class Shop < ApplicationRecord
     validates :shop_name, length: { minimum:2, maximum:20 }
     validates :shop_introduction, presence: true
     validates :shop_phone_number, format: { with: /\A\d{10}\zA|\A\d{11}\z/, message: "ハイフンなしの11桁で入力してください" }
+
+    def favorited_by?(user)
+          follows.where(user_id: user.id).exists?
+        end
 end

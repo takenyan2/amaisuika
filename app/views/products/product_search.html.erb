@@ -7,18 +7,19 @@
             <%= link_to product_path(product.id) do %>
                 <%= product.product_name %>
                 <%= product.product_price %>
-                <%= product.product_introduction %>
+                <%= product.product_introduction %></br>
                 <% product.images.each do |image| %>
-                <%#= attachment_image_tag product, :product_image, format: 'jpeg' %>
+                <%= attachment_image_tag image, :product_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %>
                 <% end %>
             </div>
           	<% end %>
         <% end %>
             <%= paginate @products, class: "pagenate" %>
+
         <% @shops.each do |shop| %>
             <div class="event-body", style= "border: 1px solid white;">
             <%= link_to shop_path(shop.id) do %>
-                <%= attachment_image_tag shop, :shop_image, format: 'jpeg' %>
+                <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br>
                 <%= shop.shop_name %>
                 <%= shop.shop_introduction %>
             </div>
@@ -27,28 +28,15 @@
             <%= paginate @shops, class: "pagenate" %>
     <% else %>
 
-        <% @product.each do |p| %>
-            <div class="event-body", style= "border: 1px solid white;">
-            <%= link_to product_path(p.id) do %>
-                <%= p.product_name %>
-                <%= p.product_price %>
-                <%= p.product_introduction %>
-                <% p.images.each do |image| %>
-                <%#= attachment_image_tag p, :product_image, format: 'jpeg' %>
-                <% end %>
-            </div>
-            <% end %>
+        <% @user.favorites.each do |fav| %>
+                <%= fav.product.product_name %>
+                <%= fav.product.product_introduction %>
+                <%= fav.product.product_price %>
         <% end %>
-            <%= paginate @product, class: "pagenate" %>
-        <% @shop.each do |s| %>
-            <div class="event-body", style= "border: 1px solid white;">
-            <%= link_to shop_path(s.id) do %>
-                <%= attachment_image_tag s, :shop_image, format: 'jpeg' %>
-                <%= s.shop_name %>
-                <%= s.shop_introduction %>
-            </div>
-            <% end %>
+        <% @user.follows.each do |fol| %>
+                <%= fol.shop.shop_name %>
+                <%= attachment_image_tag fol.shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %>
+                <%= fol.shop.shop_introduction %>
+                <%= fol.shop.prefecture %>
         <% end %>
-             <%= paginate @shops, class: "pagenate" %>
-
     <% end %>

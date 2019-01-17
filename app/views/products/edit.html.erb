@@ -1,2 +1,16 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+<h1>商品を編集する</h1>
+
+	<%= form_for(@product), url: users_path, method: :get do |f| %>
+	商品名：
+	<%= f.text_field :product_name, autofocus: true, placeholder:"商品名"%></br>
+	商品の紹介：
+	<%= f.text_area :product_introduction, autofocus: true, placeholder:"商品の紹介文"%></br>
+	ジャンル：
+	<%= f.select :product_genre, [["あまいスイカ(飲食物)", "飲食物"], ["あまいスイカGoods(飲食物以外)", "Goods"]] %></br>
+	販売価格：
+	<%= f.number_field :product_price, autofocus: true, placeholder:"値段"%>円</br>
+	商品の在庫数：
+	<%= f.number_field :product_stock, autofocus: true, placeholder:"商品在庫数"%>個</br>
+	<%= f.attachment_field :images_product_images, multiple: true %></p>
+	<%= f.submit "商品を申請する" %>
+	<% end %>
