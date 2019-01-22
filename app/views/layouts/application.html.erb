@@ -4,39 +4,54 @@
     <title>Amaisuika</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheets" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css">
   </head>
 
   <body>
     <header>
         <% if user_signed_in?  %>
-            <%= link_to root_path do %>
+            <% if current_user.user_status == "一般ユーザー" %>
+              <%= link_to product_search_path do %>
                 <div>ここにロゴ入れる</div>
               <% end %>
-              <%= link_to "あまいスイカGoods", new_shop_path %>
-              <%= link_to "マイページ", user_path(current_user.id) %>
-              <%= link_to "カートの中", cart_path(current_user.id) %>
-              <%= link_to "お店をひらく", new_shop_registration_path %>
-              <%=link_to "ログアウト", destroy_user_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %>
+                <%= link_to "あまいスイカGoods", new_shop_path %>
+                <%= link_to "マイページ", user_path(current_user.id) %>
+                <%= link_to "カートの中", cart_path(current_user.id) %>
+                <%= link_to "お店をひらく", new_shop_registration_path %>
+                <%=link_to "ログアウト", destroy_user_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %>
 
-                <%= form_tag(product_search_path, method: :get) do %>
-                  <%= text_field_tag(:content,'', :placeholder => "検索してください") %>
-                  <%= submit_tag "検索する" %>
-                <% end %>
+                  <%= form_tag(product_search_path, method: :get) do %>
+                    <%= text_field_tag(:content,'', :placeholder => "検索してください") %>
+                    <%= submit_tag "検索する" %>
+                  <% end %>
+
+            <% else current_user.user_status == "管理者" %>
+              <%= link_to product_search_path do %>
+                <div>ここにロゴ入れる</div>
+              <% end %>
+                <%= link_to "あまいスイカGoods", new_shop_path %>
+                <%= link_to "管理者ページ", search_path(current_user.id) %>
+                <%= link_to "申請中の商品を確認", users_path %>
+                <%=link_to "ログアウト", destroy_user_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %>
+
+                  <%= form_tag(product_search_path, method: :get) do %>
+                          <%= text_field_tag(:content,'', :placeholder => "検索してください") %>
+                          <%= submit_tag "検索する" %>
+                  <% end %>
+            <% end %>
 
         <% elsif shop_signed_in? %>
               <%= link_to "最初の画面に戻る", shop_main_path(current_shop.id) %>
               <%= link_to "お店から出る",  destroy_shop_session_path, "data-confirm" => "お店から出ますか？", method: :delete %>
-
         <% else %>
               <%= link_to root_path do %>
                 <div>ここにロゴ入れる</div>
               <% end %>
               <%= link_to "あまいスイカGoods", new_shop_path %>
               <%= link_to "新規登録", new_user_registration_path %>
-              <%= link_to "ログイン", new_user_session_path %>
+              <%= link_to "ユーザーログイン", new_user_session_path %>
               <%= link_to "お店をひらく", new_shop_registration_path %>
 
                 <%= form_tag(product_search_path, method: :get) do %>
@@ -47,9 +62,20 @@
 
     </header>
     <%= yield %>
-      <footer>
-                <%=link_to "運営に質問する", "", style:"color:black;" %>
-                <h5 style="color: black;">© あまいスイカ</h5>
-      </footer>
+    <footer>
+              <%=link_to "運営に質問する", "", style:"color:black;" %>
+              <h5 style="color: black;">© あまいスイカ</h5>
+    </footer>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.js">
+        window.onload = function(){
+            var mySwiper = new Swiper('.swiper-container', {
+                navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            }
+
+            });
+        };
+      </script>
   </body>
 </html>

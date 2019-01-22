@@ -1,5 +1,4 @@
 <h1>マイページ</h1>
-
 		<%= attachment_image_tag @user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300", class: "user-image" %></br>
 		<%= @user.nick_name %></br>
 		<%= @user.user_status %></br>
@@ -14,23 +13,29 @@
      		<% else %>
      			<%= image_tag("/no_image.jpg", :size => "60x60") %></br>
      		<% end %>
-     		商品名：<%= a.product_name %>値段：<%= a.product_price %>円</br>
-     		商品紹介<%= a.product_introduction %></br>
+            <%= link_to product_path(a.id) do %>
+         		商品名：<%= a.product_name %>値段：<%= a.product_price %>円</br>
+         		商品紹介<%= a.product_introduction %></br>
+            <% end %>
      	<% end %>
 
      	<h2>購入履歴</h2>
-     	<% @user.purchase_histories.each do |pur| %>
-     		<% pur.purchase_items.each do |c| %>
-     			購入商品画像：<%#= attachment_image_tag c, :purchase_product_image,  format: 'jpeg', size: "95x95" %></br>
-		    <% end %>
-        <% end %>
-
-        <% @a.each do |a|%>
-           日付：<%= a[1] %>
-           購入商品名：<%#= a[2] %></br>
-           購入価格<%#= a[3] %></br>
-           購入個数<%#= a[4] %></br>
-           ステータス：<%#= a[5] %></br>
-           小計：<%#= a[6] %></br>
-           総計<%= a[0] %>円
-        <% end %>
+            <% @a.each do |a| %>
+               <h3>日付：<%= a[1] %></h3></br>
+               <!-- 購入商品名：<%#= a[2] %></br> -->
+               <!-- 購入価格<%#= a[3] %></br> -->
+               <!-- 購入個数<%#= a[4] %></br> -->
+               <!-- ステータス：<%#= a[5] %></br> -->
+               <!-- 小計：<%#= a[6] %></br> -->
+             	<% @user.purchase_histories.each do |pur| %>
+             		<% pur.purchase_items.each do |c| %>
+             			購入商品画像：<%#= attachment_image_tag c.purchase_product_images[0], :purchase_product_image,  format: 'jpeg', size: "95x95" %>
+                        購入商品名：<%= c.purchase_product_name %></br>
+                        ステータス：<%= pur.send_status %></br>
+                        購入価格：<%= c.purchase_product_price %></br>
+                        購入個数：<%= c.purchase_product_quantity %></br>
+                        小計：<%= c.purchase_product_total_price %></br>
+        		    <% end %>
+                <% end %>
+               <h3>総計<%= a[0] %>円</h3></br>
+             <% end %>

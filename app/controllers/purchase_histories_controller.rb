@@ -9,6 +9,7 @@ class PurchaseHistoriesController < ApplicationController
   	@purchase.purchase_at = Date.today
 	@purchase.user_id = current_user.id
 	@carts = Cart.where(user_id: current_user.id)
+	@purchase_i = PurchaseItem.new
 	    if 	@purchase.save
 			@carts.each do |cart|
 				@purchase_i = PurchaseItem.new
@@ -20,6 +21,7 @@ class PurchaseHistoriesController < ApplicationController
 				@purchase_i.purchase_product_total_price = 0
 				@purchase_i.purchase_product_total_price += @purchase_i.purchase_product_price * @purchase_i.purchase_product_quantity
 				a = cart.product
+
 				a.images.each do |image|
 					@purchase_i.purchase_product_image_id = image.product_image_id
 				end

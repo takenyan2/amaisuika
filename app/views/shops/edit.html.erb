@@ -1,2 +1,35 @@
-<h1>Shops#edit</h1>
-<p>Find me in app/views/shops/edit.html.erb</p>
+<h1>お店の情報を編集する</h1>
+		<%= form_for @shop do |f| %>
+
+			<div class="field">
+			<%= f.label :都道府県 %><br />
+			<%= f.select :prefecture, Shop.prefectures.keys, {prompt: '選択してください'}, autofocus: true %>
+			</div>
+
+			<div class="field">
+			<%= f.label :お店の名前 %><br />
+			<%= f.text_field :shop_name, autofocus: true, autocomplete: "shop_name", placeholder:"お店の名前を記入" %>
+			</div>
+
+			<div class="field">
+			<%= f.label :お店の説明 %><br />
+			<%= f.text_area :shop_introduction, autofocus: true, placeholder:"お店のコンセプトや情報を記入" %>
+			</div>
+
+			プロフィール画像：<%= f.attachment_field :shop_image, style: "color: black;" %>
+
+			<div class="field">
+			<%= f.label :発送までの期間 %><br />
+			<%= f.number_field :send_period, autofocus: true, autocomplete: "send_period", placeholder:"半角数字を記入" %>日以内に商品を発送します
+			</div>
+
+			<div class="field">
+			<%= f.label :お問合せ先の電話番号 %><br />
+			<%= f.text_field :shop_phone_number, autofocus: true, autocomplete: "shop_phone_number", placeholder:"電話番号を記入" %>
+			</div>
+
+			<div class="actions">
+			<%= f.submit "お店情報を更新する" %>
+			</div>
+
+		<% end %>

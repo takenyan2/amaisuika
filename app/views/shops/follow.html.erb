@@ -1,2 +1,12 @@
-<h1>Shops#follow</h1>
-<p>Find me in app/views/shops/follow.html.erb</p>
+<h1>フォロワーの一覧</h1>
+
+	<%= current_shop.follows.count %>人のフォロワー</br>
+		<% current_shop.follows.each do |follow| %>
+			<% if follow.user.user_deleted_at == nil %>
+				<%#= link_to user_path(follow.user.id) do %>
+				<%= attachment_image_tag follow.user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300", class: "user-image" %></br>
+				ニックネーム：<%= follow.user.nick_name %>
+				退会日時：<%= follow.user.user_deleted_at %>
+				<%# end %>
+			<% end %>
+		<% end %>

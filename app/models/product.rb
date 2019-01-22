@@ -4,12 +4,13 @@ class Product < ApplicationRecord
     has_many :carts, dependent: :destroy
     has_many :favorites, dependent: :destroy
     has_many :comments, dependent: :destroy
-    has_many :perchase_items, dependent: :destroy
+    has_many :purchase_items, dependent: :destroy
+    belongs_to :shop
 
     has_many :users, through: :favorites
     has_many :users, through: :carts
     has_many :users, through: :comments
-    has_many :perchase_history, through: :perchase_items
+    has_many :perchase_history, through: :purchase_items
 
     # validates :shop_id, presence: true
     validates :product_name, length: { minimum:2, maximum:20 }

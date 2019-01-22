@@ -1,42 +1,103 @@
 <h1>TOPページ</h1>
 
-	<%if @search = "true" %>
+	<%if @search == "true" %>
         <h2>検索結果</h2>
         <% @products.each do |product| %>
-            <div class="event-body", style= "border: 1px solid white;">
-            <%= link_to product_path(product.id) do %>
-                <%= product.product_name %>
-                <%= product.product_price %>
-                <%= product.product_introduction %></br>
-                <% product.images.each do |image| %>
-                <%= attachment_image_tag image, :product_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %>
-                <% end %>
-            </div>
-          	<% end %>
+            <% if product.permission == false %>
+                <%= link_to product_path(product.id) do %>
+                    <%= product.product_name %>
+                    <%= product.product_price %>
+                    <%= product.product_introduction %></br>
+                    <% product.images.each do |image| %>
+                    <%= attachment_image_tag image, :product_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %>
+                    <% end %>
+              	<% end %>
+            <% end %>
         <% end %>
             <%= paginate @products, class: "pagenate" %>
 
         <% @shops.each do |shop| %>
-            <div class="event-body", style= "border: 1px solid white;">
-            <%= link_to shop_path(shop.id) do %>
+        <% if shop.shop_deleted_at == nil %>
+                <%= link_to shop_path(shop.id) do %>
                 <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br>
                 <%= shop.shop_name %>
                 <%= shop.shop_introduction %>
-            </div>
-            <% end %>
+                <% end %>
+        <% end %>
         <% end %>
             <%= paginate @shops, class: "pagenate" %>
     <% else %>
+        <% if user_signed_in? && current_user.user_status == "一般ユーザー" %>
+            <h2>お気に入りした商品</h2>
+            <% @user.favorites.each do |fav| %>
+                <% if fav.product.permission == false %>
+                    <%= link_to product_path(fav.product.id) do %>
+                        <%= attachment_image_tag fav.product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br>
+                        <%= fav.product.product_name %></br>
+                        <%= fav.product.product_introduction %></br>
+                        <%= fav.product.product_price %></br>
+                    <% end %>
+                <% end %>
+            <% end %>
 
-        <% @user.favorites.each do |fav| %>
-                <%= fav.product.product_name %>
-                <%= fav.product.product_introduction %>
-                <%= fav.product.product_price %>
-        <% end %>
-        <% @user.follows.each do |fol| %>
-                <%= fol.shop.shop_name %>
-                <%= attachment_image_tag fol.shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %>
-                <%= fol.shop.shop_introduction %>
-                <%= fol.shop.prefecture %>
+            <h2>フォローしたお店</h2>
+            <% @user.follows.each do |fol| %>
+                <% if fol.shop.shop_deleted_at == nil %>
+                    <%= link_to shop_path(fol.shop.id) do %>
+                        <%= fol.shop.shop_name %></br>
+                        <%= attachment_image_tag fol.shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br>
+                        <%= fol.shop.shop_introduction %></br>
+                        <%= fol.shop.prefecture %></br>
+                    <% end %>
+                <% end %>
+            <% end %>
+
+            <h2>新着商品</h2>
+            <% @products.each do |product| %>
+                <% if product.permission == false %>
+                    <%= link_to product_path(product.id) do %>
+                        <%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br>
+                        <%= product.product_name %></br>
+                        <%= product.product_introduction %></br>
+                        <%= product.product_price %></br>
+                    <% end %>
+                <% end %>
+            <% end %>
+
+            <h2>新しいお店</h2>
+            <% @shops.each do |shop| %>
+                <% if shop.shop_deleted_at == nil %>
+                    <%= link_to shop_path(shop.id) do %>
+                        <%= shop.shop_name %></br>
+                        <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br>
+                        <%= shop.shop_introduction %></br>
+                        <%= shop.prefecture %></br>
+                    <% end %>
+                <% end %>
+            <% end %>
+        <% else %>
+            <h2>新着商品</h2>
+            <% if product.permission == false %>
+                <% @products.each do |product| %>
+                    <%= link_to product_path(product.id) do %>
+                        <%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br>
+                        <%= product.product_name %></br>
+                        <%= product.product_introduction %></br>
+                        <%= product.product_price %></br>
+                    <% end %>
+                <% end %>
+            <% end %>
+
+            <h2>新しいお店</h2>
+            <% @shops.each do |shop| %>
+                <% if shop.shop_deleted_at == nil %>
+                    <%= link_to shop_path(shop.id) do %>
+                        <%= shop.shop_name %></br>
+                        <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br>
+                        <%= shop.shop_introduction %></br>
+                        <%= shop.prefecture %></br>
+                    <% end %>
+                <% end %>
+            <% end %>
         <% end %>
     <% end %>

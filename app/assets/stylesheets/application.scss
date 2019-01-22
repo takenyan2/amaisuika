@@ -16,3 +16,19 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.star-ratings-sprite {
+background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+font-size: 0;
+overflow: hidden;
+width: 110px;
+display: inline-block;
+}
+.star-ratings-sprite-rating {
+background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+background-position: 0 100%;
+float: left;
+height: 21px;
+display: inline-block;
+}

@@ -1,14 +1,17 @@
 class CartsController < ApplicationController
 	before_action :authenticate_user!
   def show
-  	@carts = Cart.where(user_id: current_user.id)
-    @purchase = PurchaseHistory.new
-    @total_price = 0
+    if current_user
+    	@carts = Cart.where(user_id: current_user.id)
+      @purchase = PurchaseHistory.new
+      @total_price = 0
 
-    @carts.each do |c|
-      @total_price += c.product.product_price * c.product_quantity
-	  end
-    
+      @carts.each do |c|
+        @total_price += c.product.product_price * c.product_quantity
+  	  end
+    else
+      redirect_to root_path
+    end
   end
 
   def create

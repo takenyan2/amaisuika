@@ -1,2 +1,23 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>申請中の商品一覧</h1>
+	<% if @products.present? %>
+		<% @products.each do |product| %>
+			<% if product.permission == true %>
+			 	<% product.images.each do |image| %>
+			 	<%= attachment_image_tag image, :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %>
+			<% end %>
+				 <br><%= product.product_name %></br>
+				 <%= product.product_introduction %></br>
+				 <%= product.product_genre %></br>
+				 <%= product.product_price %></br>
+				 <%= product.product_stock %></br>
+				 <%= link_to "許可", users_path(permission: true, product_id: product.id) %>
+				 <%= link_to "拒否", users_path(permission: false, product_id: product.id), "data-confirm" => "拒否するとこの商品は削除されます。本当に拒否しますか？" %></br>
+			 <% end %>
+		<% end %>
+	<% else %>
+		<h2>現在申請中の商品はありません</h2>
+	<% end %>
+
+
+
+

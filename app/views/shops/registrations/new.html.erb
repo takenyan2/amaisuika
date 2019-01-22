@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :都道府県 %><br />
-    <%= f.select :prefecture, Shop.prefecture.keys, {prompt: '選択してください'}, autofocus: true %>
+    <%= f.select :prefecture, Shop.prefectures.keys, {prompt: '選択してください'}, autofocus: true %>
   </div>
 
   <div class="field">
@@ -38,13 +38,15 @@
     <% if @minimum_password_length %>
     <em>(※<%= @minimum_password_length %> 文字以上の半角英数字で記入してください)</em>
     <% end %><br />
-    <%= f.password_field :encrypted_password, autocomplete: "new-password", placeholder:"パスワードを記入" %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder:"パスワードを記入" %>
   </div>
 
   <div class="field">
     <%= f.label :上記と同じパスワードを入力 %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"パスワードを記入" %>
   </div>
+
+  
 
   <div class="actions">
     <%= f.submit "新しいお店を作る" %>

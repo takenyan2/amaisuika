@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'favorites/create'
-  get 'favorites/destroy'
-	root 'products#product_search'
+
 devise_for :shops, controllers: {
   sessions:      'shops/sessions',
   passwords:     'shops/passwords',
@@ -12,11 +10,12 @@ devise_for :users, controllers: {
   passwords:     'users/passwords',
   registrations: 'users/registrations'
 }
-
+root 'users#top'
 	resources :users, only: [:index, :show, :edit, :update, :destroy]
 	resources :shops, only: [:index, :new, :show, :edit, :update, :destroy] do
 		resource :follows, only: [:create, :destroy]
 		resource :comments, only: [:create, :destroy]
+		resources :products, only: [:new, :show, :edit, :create, :update, :destroy]
 	end
 	resources :products, only: [:new, :show, :edit, :create, :update, :destroy] do
 		resource :favorites, only: [:create, :destroy]
@@ -29,7 +28,7 @@ devise_for :users, controllers: {
 	get  "/shops/:id/main" => "shops#main", as: "shop_main"
 	get  "/users/:id/search" => "users#search", as: "search"
 	get  "/shops/:id/main" => "shops#main", as: "main"
-	get  "/shops/:id/folllow" => "shops#folllow", as: "shops_follow_index"
+	get  "/shops/:id/folllow" => "shops#follow", as: "shops_follow_index"
 	post  "/shop/search" => "shops#search", as: "shop_search"
 	get  "/shop/prefectures" => "shops#prefectures", as: "shop_search_prefectures"
 	get "/product/search" => "products#product_search", as: "product_search"
