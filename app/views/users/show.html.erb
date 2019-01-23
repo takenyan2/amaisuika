@@ -20,22 +20,27 @@
      	<% end %>
 
      	<h2>購入履歴</h2>
-            <% @a.each do |a| %>
-               <h3>日付：<%= a[1] %></h3></br>
+      <% @day_histories.each do |his| %>
+      <%= his["day"] %>
+      <%= his["item"] %>
+      <%= his["subtotal"] %>
+      <% end %>
+        <%# @user.purchase_histories.each do |pur| %>
+          <%# pur.purchase_items.each do |c| %>
+            <%# @a.each do |a| %>
+               <!-- <h3>日付：<%#= a[1].year %>年<%#= a[1].month %>月<%#= a[1].day %>日</h3></br> -->
                <!-- 購入商品名：<%#= a[2] %></br> -->
                <!-- 購入価格<%#= a[3] %></br> -->
                <!-- 購入個数<%#= a[4] %></br> -->
                <!-- ステータス：<%#= a[5] %></br> -->
                <!-- 小計：<%#= a[6] %></br> -->
-             	<% @user.purchase_histories.each do |pur| %>
-             		<% pur.purchase_items.each do |c| %>
-             			購入商品画像：<%#= attachment_image_tag c.purchase_product_images[0], :purchase_product_image,  format: 'jpeg', size: "95x95" %>
-                        購入商品名：<%= c.purchase_product_name %></br>
-                        ステータス：<%= pur.send_status %></br>
-                        購入価格：<%= c.purchase_product_price %></br>
-                        購入個数：<%= c.purchase_product_quantity %></br>
-                        小計：<%= c.purchase_product_total_price %></br>
-        		    <% end %>
-                <% end %>
-               <h3>総計<%= a[0] %>円</h3></br>
-             <% end %>
+             			<!-- 購入商品画像：<%#= attachment_image_tag c.purchase_product_images[0], :purchase_product_image,  format: 'jpeg', size: "95x95" %>
+                        購入商品名：<%#= c.purchase_product_name %></br>
+                        ステータス：<%#= pur.send_status %></br>
+                        購入価格：<%#= c.purchase_product_price %></br>
+                        購入個数：<%#= c.purchase_product_quantity %></br>
+                        小計：<%#= c.purchase_product_total_price %></br>
+               <h3>総計<%#= a[0] %>円</h3></br> -->
+             <%# end %>
+          <%# end %>
+        <%# end %>

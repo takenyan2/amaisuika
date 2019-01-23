@@ -39,29 +39,35 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user.id == current_user.id || current_user.user_status == "管理者"
-        @a = []
-        sum = 0
-        day = ""
-        purchase_histories = @user.purchase_histories.order(purchase_at: :desc)
-        purchase_histories.each do |purchase_history|
-          subtotal = 0
+        @day_histories = [] #day_histories初期化
+        @user.purchase_histories.each do |purchase_history|
           day = purchase_history.purchase_at
+          day_history = {}
+          @day_histories.each do |history|
+            if day == history["day"]
+              day_history = history
+              break
+            end
+          end
+
+          if day_history.empty?
+            day_history["subtotal"] = 0
+            day_history["items"] = []
+            day_history["day"] = day
+            @day_histories.push(day_history)
+          end
+
           purchase_history.purchase_items.each do |item|
-              subtotal += item.purchase_product_price * item.purchase_product_quantity
-              # item_name = item.purchase_product_name
-              # item_price = item.purchase_product_price
-              # item_quantity = item.purchase_product_quantity
-              # item_status = purchase_history.send_status
-              # item_total_price = item.purchase_product_total_price
+            day_history["subtotal"] += item.purchase_product_price * item.purchase_product_quantity
+              item_name = item.purchase_product_name
+              item_price = item.purchase_product_price
+              item_quantity = item.purchase_product_quantity
+              item_status = purchase_history.send_status
+              item_total_price = item.purchase_product_total_price
+              item_image = item.purchase_product_image_id
+            day_history["items"].unshift(item_name, item_price, item_quantity, item_status, item_total_price,item_image)
           end
-          if @a != [] && @a.last[1] == day
-              @a.last[0] += subtotal
-          else
-              @a.push([subtotal, day])
-              #b.push([item_name, item_price, item_quantity, item_status, item_total_price])
-              #@a.push([subtotal, day, [item_name, item_price, item_quantity, item_status, item_total_price]])
-          end
-      end
+        end
     else
       redirect_to root_path
       flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
