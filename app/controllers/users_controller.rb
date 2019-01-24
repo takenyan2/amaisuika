@@ -40,7 +40,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.id == current_user.id || current_user.user_status == "管理者"
         @day_histories = [] #day_histories初期化
-        @user.purchase_histories.each do |purchase_history|
+        purchase_histories = @user.purchase_histories.order(purchase_at: :desc)
+        purchase_histories.each do |purchase_history|
           day = purchase_history.purchase_at
           day_history = {}
           @day_histories.each do |history|

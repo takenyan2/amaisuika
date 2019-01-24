@@ -20,10 +20,16 @@
      	<% end %>
 
      	<h2>購入履歴</h2>
+
+      <%# @day_histories.sort_by!{ |history| history[:day]} %>
       <% @day_histories.each do |his| %>
-      <%= his["day"] %>
-      <%= his["item"] %>
-      <%= his["subtotal"] %>
+      <%= his["day"] %></br>
+      <%= his["items"][0] %></br>
+      <%= his["items"][1] %></br>
+      <%= his["items"][2] %></br>
+      <%= his["items"][3] %></br>
+      <%= his["items"][4] %></br>
+      <%= his["subtotal"] %>円</br>
       <% end %>
         <%# @user.purchase_histories.each do |pur| %>
           <%# pur.purchase_items.each do |c| %>
