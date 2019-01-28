@@ -17,6 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/*--------------- 共通 ---------------*/
 * {
   margin: 0;
   padding: 0;
@@ -48,12 +49,91 @@ height: 21px;
 display: inline-block;
 }
 
-.back-image{
-background-image: linear-gradient(-45deg, rgba(6,199,70,0.1), rgba(255,3,3,0.1)),url("/004-Fantasy-Paper.png");
+.back-color{
+	background-color:#FFFF99;
+	opacity: 0.9;
+	z-index: 1;
+}
 
+.back-image{
+	/*background-color:#FFFF99;*/
+	background-image:url("/dmitry-bayer-348230-unsplashhhhh.jpg");
+	background-size: cover;
+}
+
+.footer-color{
+	background-color:#FFFFBB;
+	opacity: 0.9;
 }
 
 .out-shop{
 	display: inline-block;
 }
 
+a:hover {
+  color: red;
+}
+
+.text{
+	font-family: "游明朝体","YuMincho"; font-weight: 900;
+	color:black;
+}
+
+/*--------------- header ---------------*/
+header {
+	height: 60px;
+	width: 100%;
+  margin-bottom: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.header-logo{
+	width:18%;
+	height:auto;
+	background-size: cover;
+    background-position: center;
+}
+
+.search-form{
+	float: right;
+}
+.navbar, .navbar-default{
+	background-color: white;
+}
+
+
+/*--------------- レスポンシブ対応 ---------------*/
+
+/* タブレット横置き(1024px)程度の大きさ以下に適用される設定です */
+@media screen and (max-width:1024px) {
+
+
+
+
+}
+
+/* タブレット縦置きサイズ(768px)程度の画面の大きさ以下に適用される設定です */
+@media screen and (max-width:768px) {
+
+
+
+}
+
+/* スマートフォンサイズ(425px)程度の画面の大きさ以下に適用される設定です */
+@media screen and (max-width:425px) {
+.container{
+	width:100%;
+}
+.shop-sub-main{
+	width:100%;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+
+
+}

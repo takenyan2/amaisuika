@@ -1,6 +1,5 @@
 
-<h1>ショップオーナーTOPページ</h1>
-<%= link_to "お店情報を見る", shop_path(current_shop.id) %>
-<%= link_to "お店情報を編集", edit_shop_path(current_shop.id) %>
-<%= link_to "新しい商品を追加", new_product_path %>
-<%= link_to "フォロワーを見る", shops_follow_index_path(current_shop.id) %>
+<h1><%= link_to "お店情報を見る", shop_path(current_shop.id) ,class: "label label-success text"%></h1>
+<h1><%= link_to "お店情報を編集", edit_shop_path(current_shop.id),class: "label label-success text" %></h1>
+<h1><%= link_to "新しい商品を追加", new_product_path,class: "label label-success text" %></h1>
+<h1><%= link_to "フォロワーを見る", shops_follow_index_path(current_shop.id),class: "label label-success text" %></h1>

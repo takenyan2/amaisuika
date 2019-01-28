@@ -1,5 +1,5 @@
     <!-- ===== 画像 ===== -->
-<div class="blog-main-visual">
+<div class="blog-main-visual" style="margin-bottom: 0px">
     <div class="blog-main-visual-content">
         <p class="blog-main-visual-text">
             スイカ好きの、</br>
@@ -8,191 +8,222 @@
         </p>
     </div>
 </div>
-
+<div class="back-image">
+<div class="back-color">
 <div class="product_seach_main">
-
-
-        	<%if @search == "true" %>
-                <h2>検索結果</h2>
-                <div class="user-products clearfix">
-                <div class="user-favorites clearfix">
-                    <% @products.each do |product| %>
-                        <% if product.permission == false %>
-                            <div class="product-info">
-                                <%= link_to product_path(product.id) do %>
-                                    <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg" %></br>
-                                        </div>
-                                    <div class="product-title" style="width:100%; height:50px;">
-                                        <div class="product-name"><%= product.product_name %></div>
-                                        <div class="product-price"><%= product.product_price %></div>
-                                    </div>
-                                    <div class="product-introduction" style="width:100%; height:150px;"><%= product.product_introduction %></br>
-                                    </div>
-                          	    <% end %>
+<div class="product_seach_sub">
+<!-- 検索結果の表示 -->
+	<%if @search == "true" %>
+        <h2 class="text" style="margin-top: 0px; padding-top: 30px;">検索結果</h2>
+        <div class="user-products clearfix">
+        <div class="user-favorites clearfix">
+            <% @products.each do |product| %>
+                <% if product.permission == false %>
+                    <div class="product-info">
+                        <%= link_to product_path(product.id) do %>
+                            <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg" %></br>
+                                </div>
+                            <div class="product-title" style="width:100%; height:50px;">
+                                <div class="product-name text"><%= product.product_name %></div>
+                                <div class="product-price text"><%= product.product_price %></div>
                             </div>
-                        <% end %>
-                    <% end %>
-                </div>
-                </div>
-                    <%= paginate @products, class: "pagenate" %>
-
-                <div class="user-products clearfix">
-                <div class="user-follows clearfix">
-                    <% @shops.each do |shop| %>
-                        <% if shop.shop_deleted_at == nil %>
-                            <div class="product-info">
-                                <%= link_to shop_path(shop.id) do %>
-                                <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
-                                <div class="product-title" style="width:100%; height:50px;">
-                                    <div class="product-name"><%= shop.shop_name %></div>
-                                    <div class="product-price"><%= shop.prefecture %></div>
-                                </div>
-                                <div class="product-introduction" style="width:100%; height:150px;">
-                                    <%= shop.shop_introduction %>
-                                </div>
-                                <% end %>
+                            <div class="product-introduction text" style="width:100%; height:150px;"><%= product.product_introduction %></br>
                             </div>
-                        <% end %>
-                    <% end %>
-                </div>
-                </div>
-                    <%= paginate @shops, class: "pagenate" %>
-
-            <% else %>
-                <% if user_signed_in? && current_user.user_status == "一般ユーザー" %>
-
-                    <h2>お気に入りした商品</h2>
-                    <div class="user-products clearfix">
-                    <div class="user-favorites clearfix">
-                        <% @user.favorites.each do |fav| %>
-                            <% if fav.product.permission == false %>
-                                <div class="product-info">
-                                    <%= link_to product_path(fav.product.id) do %>
-                                        <div class="product-image"><%= attachment_image_tag fav.product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg" %></br>
-                                        </div>
-                                        <div class="product-title" style="width:100%; height:50px;">
-                                            <div class="product-name"><%= fav.product.product_name %></div>
-                                            <div class="product-price"><%= fav.product.product_price %>円</br></div>
-                                        </div>
-                                        <div class="product-introduction" style="width:100%; height:150px;"><%= fav.product.product_introduction %></br>
-                                        </div>
-                                    <% end %>
-                                </div>
-                            <% end %>
-                        <% end %>
-                    </div>
-                    </div>
-
-                    <h2>フォローしたお店</h2>
-                    <div class="user-products clearfix">
-                    <div class="user-follows clearfix">
-                        <% @user.follows.each do |fol| %>
-                            <% if fol.shop.shop_deleted_at == nil %>
-                                <div class="product-info">
-                                    <%= link_to shop_path(fol.shop.id) do %>
-                                        <div class="shop-image"><%= attachment_image_tag fol.shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg" %></br></div>
-                                        <div class="product-title" style="width:100%; height:50px;">
-                                            <div class="product-name"><%= fol.shop.shop_name %></div>
-                                            <div class="product-price"><%= fol.shop.prefecture %></br></div>
-                                        </div>
-                                        <div class="product-introduction" style="width:100%; height:150px;">
-                                            <%= fol.shop.shop_introduction %></br>
-                                        </div>
-                                    <% end %>
-                                </div>
-                            <% end %>
-                        <% end %>
-                    </div>
-                    </div>
-
-                    <h2>新着商品</h2>
-                    <div class="user-products clearfix">
-                    <div class="user-favorites clearfix">
-                        <% @products.each do |product| %>
-                            <% if product.permission == false %>
-                                <div class="product-info">
-                                    <%= link_to product_path(product.id) do %>
-                                        <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
-                                        <div class="product-title" style="width:100%; height:50px;">
-                                            <div class="product-name"><%= product.product_name %></br></div>
-                                            <div class="product-price"><%= product.product_price %>円</br></div>
-                                        </div>
-                                        <div class="product-introduction" style="width:100%; height:150px;">
-                                            <%= product.product_introduction %></br>
-                                        </div>
-                                    <% end %>
-                                </div>
-                            <% end %>
-                        <% end %>
-                    </div>
-                    </div>
-
-                    <h2>新しいお店</h2>
-                    <div class="user-products clearfix">
-                    <div class="user-follows clearfix">
-                        <% @shops.each do |shop| %>
-                            <% if shop.shop_deleted_at == nil %>
-                                <div class="product-info">
-                                    <%= link_to shop_path(shop.id) do %>
-                                        <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
-                                        <div class="product-title" style="width:100%; height:50px;">
-                                            <div class="product-name"><%= shop.shop_name %></div>
-                                            <div class="product-price"><%= shop.prefecture %></br></div>
-                                        </div>
-                                        <div class="product-introduction" style="width:100%; height:150px;">
-                                        <%= shop.shop_introduction %></br>
-                                        </div>
-                                    <% end %>
-                                </div>
-                            <% end %>
-                        <% end %>
-                    </div>
-                    </div>
-
-                <% else %>
-                    <h2>新着商品</h2>
-                    <div class="user-products clearfix">
-                    <div class="user-favorites clearfix">
-                        <% @products.each do |product| %>
-                            <% if product.permission == false %>
-                                <div class="product-info">
-                                    <%= link_to product_path(product.id) do %>
-                                        <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
-                                        <div class="product-title" style="width:100%; height:50px;">
-                                            <div class="product-name"><%= product.product_name %></div>
-                                            <div class="product-price"><%= product.product_price %></br></div>
-                                        </div>
-                                        <div class="product-introduction" style="width:100%; height:150px;">
-                                            <%= product.product_introduction %></br>
-                                        </div>
-                                    <% end %>
-                                </div>
-                            <% end %>
-                        <% end %>
-                    </div>
-                    </div>
-
-                    <h2>新しいお店</h2>
-                    <div class="user-products clearfix">
-                    <div class="user-follows clearfix">
-                        <% @shops.each do |shop| %>
-                            <% if shop.shop_deleted_at == nil %>
-                                <div class="product-info">
-                                    <%= link_to shop_path(shop.id) do %>
-                                        <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
-                                        <div class="product-title" style="width:100%; height:50px;">
-                                            <div class="product-name"><%= shop.shop_name %></br></div>
-                                            <div class="product-price"><%= shop.prefecture %></br></div>
-                                        </div>
-                                        <div class="product-introduction" style="width:100%; height:150px;">
-                                        <%= shop.shop_introduction %></br>
-                                        </div>
-                                    <% end %>
-                                </div>
-                            <% end %>
-                        <% end %>
-                    </div>
+                  	    <% end %>
                     </div>
                 <% end %>
             <% end %>
+        </div>
+        </div>
+            <%= paginate @products, class: "pagenate" %>
+
+        <div class="user-products clearfix">
+        <div class="user-follows clearfix">
+            <% @shops.each do |shop| %>
+                <% if shop.shop_deleted_at == nil %>
+                    <div class="product-info">
+                        <%= link_to shop_path(shop.id) do %>
+                        <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
+                        <div class="product-title" style="width:100%; height:50px;">
+                            <div class="product-name text"><%= shop.shop_name %></div>
+                            <div class="product-price text"><%= shop.prefecture %></div>
+                        </div>
+                        <div class="product-introduction text" style="width:100%; height:150px;">
+                            <%= shop.shop_introduction %>
+                        </div>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+        </div>
+            <%= paginate @shops, class: "pagenate" %>
+
+    <% else %>
+<!-- 一般ユーザーの表示 -->
+
+        <% if user_signed_in? && current_user.user_status == "一般ユーザー" %>
+        <ul class="nav nav-tabs">
+            <li class="active text"><a href="#sampleContentA" data-toggle="tab">お気に入りした商品</a></li>
+            <li class="text"><a href="#sampleContentB" data-toggle="tab">フォローしたお店</a></li>
+            <li class="text"><a href="#sampleContentC" data-toggle="tab">新着商品</a></li>
+            <li class="text"><a href="#sampleContentD" data-toggle="tab">新しいお店</a></li>
+        </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="sampleContentA">
+            <h2 class="text">お気に入りした商品</h2>
+            <div class="user-products clearfix">
+            <div class="user-favorites clearfix">
+                <% @user.favorites.each do |fav| %>
+                    <% if fav.product.permission == false %>
+                        <div class="product-info">
+                            <%= link_to product_path(fav.product.id) do %>
+                                <div class="product-image"><%= attachment_image_tag fav.product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg" %></br>
+                                </div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text" ><%= fav.product.product_name %></div>
+                                    <div class="product-price text"><%= fav.product.product_price %>円</br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;"><%= fav.product.product_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="sampleContentB">
+            <h2 class="text">フォローしたお店</h2>
+            <div class="user-products clearfix">
+            <div class="user-follows clearfix">
+                <% @user.follows.each do |fol| %>
+                    <% if fol.shop.shop_deleted_at == nil %>
+                        <div class="product-info">
+                            <%= link_to shop_path(fol.shop.id) do %>
+                                <div class="shop-image"><%= attachment_image_tag fol.shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg" %></br></div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text"><%= fol.shop.shop_name %></div>
+                                    <div class="product-price text"><%= fol.shop.prefecture %></br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                    <%= fol.shop.shop_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="sampleContentC">
+            <h2 class="text">新着商品</h2>
+            <div class="user-products clearfix">
+            <div class="user-favorites clearfix">
+                <% @products.each do |product| %>
+                    <% if product.permission == false %>
+                        <div class="product-info">
+                            <%= link_to product_path(product.id) do %>
+                                <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text"><%= product.product_name %></br></div>
+                                    <div class="product-price terxt"><%= product.product_price %>円</br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                    <%= product.product_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="sampleContentD">
+            <h2 class="text">新しいお店</h2>
+            <div class="user-products clearfix">
+            <div class="user-follows clearfix">
+                <% @shops.each do |shop| %>
+                    <% if shop.shop_deleted_at == nil %>
+                        <div class="product-info">
+                            <%= link_to shop_path(shop.id) do %>
+                                <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text"><%= shop.shop_name %></div>
+                                    <div class="product-price text"><%= shop.prefecture %></br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                <%= shop.shop_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+    </div>
+<!-- 管理者とログアウト時の表示 -->
+        <% else %>
+        <ul class="nav nav-tabs">
+            <li class="active text"><a href="#sampleContentE" data-toggle="tab">新着商品</a></li>
+            <li><a href="#sampleContentF text" data-toggle="tab">新しいお店</a></li>
+        </ul>
+    <div class="tab-content">
+        <div class="tab-pane" id="sampleContentE">
+            <h2 class="text">新着商品</h2>
+            <div class="user-products clearfix">
+            <div class="user-favorites clearfix">
+                <% @products.each do |product| %>
+                    <% if product.permission == false %>
+                        <div class="product-info">
+                            <%= link_to product_path(product.id) do %>
+                                <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text"><%= product.product_name %></div>
+                                    <div class="product-price text"><%= product.product_price %></br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                    <%= product.product_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+
+        <div class="tab-pane active" id="sampleContentF">
+            <h2 class="text">新しいお店</h2>
+            <div class="user-products clearfix">
+            <div class="user-follows clearfix">
+                <% @shops.each do |shop| %>
+                    <% if shop.shop_deleted_at == nil %>
+                        <div class="product-info">
+                            <%= link_to shop_path(shop.id) do %>
+                                <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text"><%= shop.shop_name %></br></div>
+                                    <div class="product-price text"><%= shop.prefecture %></br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                <%= shop.shop_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+    </div>
+        <% end %>
+    <% end %>
+</div>
+</div>
+</div>
 </div>

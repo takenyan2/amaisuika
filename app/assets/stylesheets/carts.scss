@@ -1,3 +1,19 @@
 // Place all the styles related to the carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*------------------------------------*/
+/*          	carts-show 	          */
+/*------------------------------------*/
+
+.cart-product-main{
+	display: flex;
+}
+
+.cart-products-text{
+	margin-top: 20px;
+}
+
+.cart-product-destroy{
+	margin-top: 200px;
+}

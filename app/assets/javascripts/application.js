@@ -12,21 +12,19 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 //= require jquery3
 //= require bootstrap-sprockets
 //= require_tree .
 
-window.onload = function(){
-            var mySwiper = new Swiper('.swiper-container', {
-                navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
-            }
-
-            });
-        };
+// window.onload = function(){
+//             var mySwiper = new Swiper('.swiper-container', {
+//                 navigation: {
+//                 nextEl: '.swiper-button-next',
+//                 prevEl: '.swiper-button-prev'
+//             }
+//             });
+// };
 
         // var mySwiper = new Swiper('.swiper-container', {
         //         navigation: {

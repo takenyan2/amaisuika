@@ -1,36 +1,62 @@
-<h1>マイページ</h1>
-		<%= attachment_image_tag @user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300", class: "user-image" %></br>
-		<%= @user.nick_name %></br>
-		<%= @user.user_status %></br>
-		<%= link_to "ユーザー情報を編集", edit_user_path(current_user.id) ,class: "btn btn-primary user-edit" ,style: "color: white;" %></br>
-     	<%=link_to "退会する", user_path(@user), "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger",style: "margin-top: 10px;" %>
+<div class="back-image">
+<div class="back-color">
+<div class="container" style="margin-top: 7%;">
+    <div class="row">
+        <div class="col-sm-6">
+      		<%= attachment_image_tag @user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "400x400", class: "user-image", style: "display: inline-block;"%></br>
+          		<h2 class="text" style="margin-bottom:0;"><%= @user.nick_name %></h2></br>
+          		<h3 class="text" style="margin-top:0px;">(<%= @user.user_status %>)</h3></br>
+          		<%= link_to "ユーザー情報を編集", edit_user_path(current_user.id) ,class: "btn btn-primary user-edit text" ,style: "color: white; font-size:30px;" %></br>
+               	<%=link_to "退会する", user_path(@user), "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger text",style: "color: white; margin-top: 10px; font-size:30px;" %>
+       </div>
+           	<h2 class="text">【お気に入りした商品】</h2>
+            <div class="col-sm-6" style="width:50%; height:600px; overflow:auto;">
+           	    <% @user.favorites.each do |f| %>
+                 <div class="fav-contents" style="display: flex; margin-bottom: 30px;>
+               	    <% fav = f.product %>
+                    <%= link_to product_path(fav.id) do %>
+                        <div class="col-sm-5 fav-contents-text">
+                       		<% if fav.images.present? %>
+                                <%= attachment_image_tag fav.images[0], :product_image,  format: 'jpeg', size: "120x120" %></br>
+                       		<% else %>
+                       			<%= image_tag("/no_image.jpg", :size => "120x120") %></br>
+                       		<% end %>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="fav-contents-info text" style="margin-left: 10px;">
+                               		【<%= fav.product_name %>】
+                                    <%= fav.product_price %>円</br>
+                               		<%= fav.product_introduction %></br>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+               	<% end %>
+            </div>
+        </div>
+<div class="row">
+        <div class="col-sm-12">
+               	<h2 class="text">【購入履歴】</h2>
+                <%# @day_histories.sort_by!{ |history| history[:day]} %>
+            <div style="width:100%; height:400px; overflow:auto;">
+                <% @day_histories.each do |his| %>
+                <h3 class="item-total-history text"><%= his["day"].year %>年<%= his["day"].month %>月<%= his["day"].day %>日</h3></br>
+                    <div style="border: 3px solid rgba(32, 151, 44,0.5); width:50%;">
+                        <h4 class="item-history text">商品名：<%= his["items"][0] %></h4></br>
+                        <h4 class="item-history text">値段：<%= his["items"][1] %>円</h4></br>
+                        <h4 class="item-history text">購入個数：<%= his["items"][2] %>個</h4></br>
+                        <h4 class="item-history text">ステータス：<%= his["items"][3] %></h4></br>
+                        <h4 class="item-history text">小計：<%= his["items"][4] %>円</h4></br>
+                    </div>
+                <h3 class="item-total-history text" style="margin-bottom: 35px;">総計：<%= his["subtotal"] %>円</h3></br>
+                <% end %>
+            </div>
+            </div>
+            </div>
+        </div>
+</div>
+</div>
 
-     	<h2>お気に入り商品一覧</h2>
-     	<% @user.favorites.each do |f| %>
-     		<% a = f.product %>
-     		<% if a.images.present? %>
-     			<%= attachment_image_tag a.images[0], :product_image,  format: 'jpeg', size: "95x95" %></br>
-     		<% else %>
-     			<%= image_tag("/no_image.jpg", :size => "60x60") %></br>
-     		<% end %>
-            <%= link_to product_path(a.id) do %>
-         		商品名：<%= a.product_name %>値段：<%= a.product_price %>円</br>
-         		商品紹介<%= a.product_introduction %></br>
-            <% end %>
-     	<% end %>
-
-     	<h2>購入履歴</h2>
-
-      <%# @day_histories.sort_by!{ |history| history[:day]} %>
-      <% @day_histories.each do |his| %>
-      <%= his["day"] %></br>
-      <%= his["items"][0] %></br>
-      <%= his["items"][1] %></br>
-      <%= his["items"][2] %></br>
-      <%= his["items"][3] %></br>
-      <%= his["items"][4] %></br>
-      <%= his["subtotal"] %>円</br>
-      <% end %>
         <%# @user.purchase_histories.each do |pur| %>
           <%# pur.purchase_items.each do |c| %>
             <%# @a.each do |a| %>

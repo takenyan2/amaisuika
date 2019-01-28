@@ -1,3 +1,97 @@
 // Place all the styles related to the Shops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/*------------------------------------*/
+/*          	shop_show 	          */
+/*------------------------------------*/
+.shop-main-title{
+	 text-align: center;
+}
+
+.shop-prefecture{
+	/*float:right;*/
+}
+
+.shop-main-image img{
+	width: 	100%;
+	height:auto;
+    background-position: center;
+    margin-bottom: 20px;
+}
+
+.shop-sub-main{
+	width: 	80%;
+	margin:0 auto;
+}
+
+.shop-follow{
+	/*float:left;*/
+	width:30%;
+	display: inline-block;
+}
+
+.shop-edit{
+	/*float:right;*/
+}
+
+.media-left{
+	height: 250px;
+	width: 30%;
+	/*float: left*/
+}
+
+.media-title{
+	height: 30%;
+}
+
+.product-sub-price{
+	/*float:left;*/
+	font-size:30px;
+	color:black;
+}
+.product-subtext{
+	/*float:left;*/
+	font-size:30px;
+	color:black;
+	height:70%;
+}
+
+.media-title{
+	font-size:40px;
+	color:black;
+}
+
+.media-body{
+	/*float:left;*/
+}
+
+.product-introduction{
+	/*float:left;*/
+}
+
+.admin-edit,{
+	display: inline-block;
+	margin-right: 10px;
+}
+.admin-destroy{
+	display: inline-block;
+}
+
+.shop-main-info{
+	font-size: 20px;
+	/*float:left;*/
+}
+
+.shop-product-info{
+	/*float:left;*/
+}
+
+
+
+
+.fav-contents-text{
+	width:130px !important;
+	height: 130px;
+}

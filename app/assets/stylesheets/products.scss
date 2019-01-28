@@ -8,27 +8,38 @@
 /*------------------------------------*/
 .blog-main-visual{
     width: 100%;
-    height: 350px;
+    height: 500px;
     background-image: url("/rawpixel-653771-unsplash.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     margin-bottom: 20px;
+    z-index: 1
 }
+
 .blog-main-visual-content {
   height: 300px;
-  text-align: center;
+  /*text-align: center;*/
+  margin-left: 280px;
   padding-top: 90px;
   padding-left: 50px;
 }
+
 .blog-main-visual-text {
     letter-spacing: 2px;
     color: white;
-    font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
-
+    font-family: "游明朝体","YuMincho"; font-weight: 900;
+    margin-top: 45px;
+    font-size: 25px;
 }
 
 .product_seach_main{
 	width:100%;
+}
+.product_seach_sub{
+	width:90%;
+	margin:0 auto;
 }
 
 .product-image img{
@@ -56,13 +67,90 @@
 	height:450px;
 	float:left;
 	margin: 30px 7%;
-	background-image: url("/43257.jpg");
+
 }
 
 .product-name{
-	float:left;
+	/*float:left;*/
 }
 
 .product-price{
-	float:right;
+	/*float:right;*/
+	font-size: 15px;
 }
+
+.product-choice{
+	width:21%;
+	height:450px;
+	/*float:left;*/
+	margin: 30px 6%;
+}
+
+
+/*------------------------------------*/
+/*           product_show             */
+/*------------------------------------*/
+
+
+.product-main-name{
+	text-align: center;
+	margin-top: 20px;
+}
+
+.product-star{
+	text-align: center;
+}
+
+/*.star-ratings-sprite img{
+	font-size: 50px;
+}*/
+
+.product-review{
+	text-align: center;
+}
+
+.product-show-main{
+	width:80%;
+	margin:0 auto;
+}
+
+.product-images img{
+	width: 	100%;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 20px;
+    max-width: 1200px; /* 最大幅 */
+   	min-width: 240px; /* 最小幅 */
+}
+
+.product-show-images{
+	width:90%;
+	margin:0 auto;
+}
+
+.glyphicon{
+	font-size:40px;
+	display: inline-block;
+}
+.favorite-text{
+	font-size:40px;
+	display: inline-block;
+}
+
+.product-show-info{
+	/*float:right;*/
+	font-size:30px;
+}
+
+.product-main-price{
+	display: inline-block;
+	/*float: right;*/
+	font-size: 40px;
+}
+
+.product-main-stock{
+	display: inline-block;
+	/*float: right;*/
+	line-height: 50px;
+}
+

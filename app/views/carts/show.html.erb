@@ -1,56 +1,73 @@
-<h2>カートの中身</h2>
-				<% @carts.each do |cart| %>
-				<% a = cart.product %>
-				    <h4>商品名</h4>
-				    	<%= a.product_name %>
-				    <% a.images.each do |image| %>
-						<%= attachment_image_tag image, :product_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300" %>
-						<% end %>
-				    <h4>値段</h4>
-				    	<%= a.product_price %>円
-				    <h4>購入個数</h4>
-				    	<%= cart.product_quantity %>個
-					<%= link_to "カートから削除", cart_path(cart.id), method: :delete, class: "btn btn-danger" %>
+<div class="back-image">
+<div class="back-color">
+<div class=shop-main style="margin-top: 55px;">
+	<div class=shop-sub-main>
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-sm-12 col-xs-12">
+				<h2 class="text" style="padding-top:30px; padding-bottom: 20px;">カートの中身</h2>
+					<% @carts.each do |cart| %>
+					<% a = cart.product %>
+					<div class="cart-product-main">
+					    <%= attachment_image_tag a.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "260x260", style: "margin-bottom:30px; margin-right:0px; display:flex;" %></br>
+					    <div class="cart-products-text" style="margin-left:20px;">
+						    <h2 class="text" style="margin-top:0px;">
+						    	【<%= a.product_name %>】</h2>
+						    <h2 class="text"  style="margin-left:3%;">
+						    	<%= a.product_price %>円</h2>
+						    <h3 class="text"  style="margin-left:3%;">個数：
+						    	<%= cart.product_quantity %>個</h3></br>
+					    </div>
+					    <div class="cart-product-destroy">
+							<%= link_to "カートから削除", cart_path(cart.id), method: :delete, class: "btn btn-danger text",style: "color: white; font-size:15px;" %></br>
+						</div>
+					</div>
+				    <% end %>
+
+			    <% if @carts.empty? %>
+			     <h3 class="text">カートに商品がありません。</h3>
+			     <% else %>
+			     	<h1 class="text" style="text-align: right; ">総計:<%= @total_price %>円</h1>
+			     	<div style="display: flex;">
+				     	<input type="radio" name="btn" id="a" checked="checked" style="font-size: 40px; display: block;"><div class="text">登録されている住所に送る</div>
+				     	<input type="radio" name="btn" id="b" style="font-size: 40px; display: block; margin-left: 20px;"><div class="text">他の住所に送る</div>
+				    </div>
+			     	<div class="test test01">
+			     	<strong class="text" style="margin:20px 2%;">「<%= current_user.address %>」</strong><div class="text" style="margin:0px 2%;">
+			     	に送る</div><br>
+			     		<%= form_for @purchase, url: purchase_histories_path(buy1: ""), method: :post do |f| %>
+			     			<%= f.hidden_field :send_postal_code, :value => current_user.postal_code %>
+			     			<%= f.hidden_field :send_name, :value => current_user.user_name %>
+			     			<%= f.hidden_field :send_address , :value => current_user.address  %>
+			     			<%= f.hidden_field :@total_price , :value => @total_price  %>
+			     			<%= f.submit "購入する", class: "btn btn-success text", style: "color:white; margin-bottom:20px; font-size:25px;"%>
+			     		<% end %>
+			     	</div>
+			     	<div class="test test02" style="color: black; margin-top: 10px; display: none;">
+			     		<%= form_for @purchase, url: purchase_histories_path do |f| %>
+			     			<p class="text" style="color :black;">送付先郵便番号</p><%= f.text_field :send_postal_code %>
+			     			<p class="text" style="color :black;">送付先宛名</p><%= f.text_field :send_name %>
+			     			<p class="text" style="color :black;">送付先住所</p><%= f.text_area :send_address %><br />
+			     			<%= f.submit "購入する", class: "btn btn-success text", style: "color:white; margin-top: 5px; margin-bottom:20px; font-size:25px;" %>
+			     		<% end %>
+			     	</div>
 			    <% end %>
-		    </div>
-
-		    <% if @carts.empty? %>
-		     <h3>カートに商品がありません。</h3>
-		     <% else %>
-
-		    <div>
-		     	<h3>総計:<%= @total_price %>円</h3>
-		     	<input type="radio" name="btn" id="a" checked="checked">登録されている住所に送る
-		     	<input type="radio" name="btn" id="b">他の住所に送る
-		     	<div class="text text01">
-		     	<strong><%= current_user.address %></strong>に送る<br>
-		     		<%= form_for @purchase, url: purchase_histories_path(buy1: ""), method: :post do |f| %>
-		     			<%= f.hidden_field :send_postal_code, :value => current_user.postal_code %>
-		     			<%= f.hidden_field :send_name, :value => current_user.user_name %>
-		     			<%= f.hidden_field :send_address , :value => current_user.address  %>
-		     			<%= f.hidden_field :@total_price , :value => @total_price  %>
-		     			<%= f.submit "購入する" %>
-		     		<% end %>
-		     	</div>
-		     	<div class="text text02" style="color: black; margin-top: 10px;">
-		     		<%= form_for @purchase, url: purchase_histories_path do |f| %>
-		     			<p style="color :black;">送付先郵便番号</p><%= f.text_field :send_postal_code %>
-		     			<p style="color :black;">送付先宛名</p><%= f.text_field :send_name %>
-		     			<p style="color :black;">送付先住所</p><%= f.text_area :send_address %><br />
-		     			<%= f.submit "購入する", class: "btn btn-success", style: "margin-top: 5px;" %>
-		     		<% end %>
-		     	</div>
-		     </div>
-		     <% end %>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+</div>
+</div>
 <script>
 $(function() {
   $('[name="btn"]:radio').change( function() {
     if($('[id=a]').prop('checked')){
-      $('.text').fadeOut();
-      $('.text01').fadeIn();
+      $('.test').fadeOut();
+      $('.test01').fadeIn();
     } else if ($('[id=b]').prop('checked')) {
-      $('.text').fadeOut();
-      $('.text02').fadeIn();
+      $('.test').fadeOut();
+      $('.test02').fadeIn();
     }
   });
 });
