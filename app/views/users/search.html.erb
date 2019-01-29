@@ -1,77 +1,121 @@
-<h1><%= current_user.user_name %>のページ</h1>
+<div class="back-image">
+<div class="back-top-color">
 
-	<%= form_for @user, url: user_path, method: :patch do |f| %>
+<div class=shop-main style="margin-top: 55px;">
+    <div class=shop-sub-main>
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-12" style="text-align: center;">
 
-	  <div class="field">
-	    <%= f.label :名前 %><br />
-	    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder:"名前をフルネームで記入" %>
-	  </div>
+                <h1 class="text" style="margin:40px 0px;"><%= current_user.user_name %>のページ</h1>
 
-	  <div class="field">
-	    <%= f.label :カナ名 %><br />
-	    <%= f.text_field :kana_user_name, autofocus: true, autocomplete: "kana_user_name", placeholder:"名前をカタカナフルネームで記入" %>
-	  </div>
+					<%= form_for @user, url: user_path, method: :patch do |f| %>
 
-	  <div class="field">
-	    <%= f.label :電話番号 %><br />
-	    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:"電話番号を記入" %>
-	  </div>
+					  <div class="field text" style="margin-bottom: 20px; font-size: 20px;">
+					    <%= f.label :名前, class: "text" %><br />
+					    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder:"名前をフルネームで記入" %>
+					  </div>
 
-	    <%= f.submit "更新する" %>
-	  </div>
-	<% end %>
+					  <div class="field text" style="margin-bottom: 20px; font-size: 20px;">
+					    <%= f.label :カナ名, class: "text" %><br />
+					    <%= f.text_field :kana_user_name, autofocus: true, autocomplete: "kana_user_name", placeholder:"名前をカタカナフルネームで記入" %>
+					  </div>
 
-	<%=link_to "退会する", user_path, "data-confirm" => "本当に退会しますか？", method: :delete %>
+					  <div class="field text" style="margin-bottom: 20px; font-size: 20px;">
+					    <%= f.label :電話番号, class: "text" %><br />
+					    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:"電話番号を記入" %>
+					  </div>
+
+					    <%= f.submit "更新する", class: "btn btn-default text", style:"font-size:20px; padding:10px 30px; margin-top:20px;" %>
+					  </div>
+					<% end %>
+
+					<div style="text-align: right;">
+					<%=link_to "退会する", user_path, "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger text", style:"font-size:20px; padding:10px 30px; margin-top:20px;"  %>
+					</div>
+
+					<div style="text-align: right; margin-top:60px;">
+						<h2 class="text">※ユーザー検索</h2>
+					<%= form_tag(search_path, method: :get) do %>
+				      <%= text_field_tag(:content,'', :placeholder => "検索してください", class: "btn btn-default text") %>
+				      <%= submit_tag "検索する", class: "btn btn-default text", style:"font-size:15px; padding:10px 30px; margin-top:5px;" %>
+				    <% end %>
+				    </div>
 
 
-	<%= form_tag(search_path, method: :get) do %>
-      <%= text_field_tag(:content,'', :placeholder => "検索してください") %>
-      <%= submit_tag "検索する" %>
-    <% end %>
-    <% if @search == "true" %>
-	    <h2>検索されたユーザー</h2>
-			<% @user_search.each do |user| %>
-				<%= link_to user_path(user.id) do %>
-					<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100", class: "user-image" %></br>
-					名前：<%= user.user_name %></br>
-					カナ：<%= user.kana_user_name %></br>
-					ニックネーム：<%= user.nick_name %></br>
-					退会日時：<%= user.user_deleted_at %></br>
-				<% end %>
-			<% end %>
+				    <% if @search == "true" %>
+					    <h2 class="text">検索結果</h2>
+							<% @user_search.each do |user| %>
+							<div class="text" style="display: flex;">
+								<%= link_to user_path(user.id) do %>
+								<div style="display: inline-block; margin-bottom: 30px;">
+									<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161", class: "user-image" %></br>
+								</div>
+									<div class="text" style="display: inline-block; margin-left:15px;">
+										名前：<%= user.user_name %></br>
+										カナ：<%= user.kana_user_name %></br>
+										ニックネーム：<%= user.nick_name %></br>
+										退会日時：<%= user.user_deleted_at %></br>
+									</div>
+								<% end %>
+							</div>
+							<% end %>
 
-		<h2>検索されたお店</h2>
-            <% @shops_search.each do |shop| %>
-                <% if shop.shop_deleted_at == nil %>
-                    <%= link_to shop_path(shop.id) do %>
-                        <%= shop.shop_name %></br>
-                        <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br>
-                        <%= shop.shop_introduction %></br>
-                        <%= shop.prefecture %></br>
-                    <% end %>
-                <% end %>
-            <% end %>
-    <% else %>
-    	<h2>ユーザーの一覧</h2>
-			<% @user_search.each do |user| %>
-				<%= link_to user_path(user.id) do %>
-					<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100", class: "user-image" %></br>
-					名前：<%= user.user_name %></br>
-					カナ：<%= user.kana_user_name %></br>
-					ニックネーム：<%= user.nick_name %></br>
-					退会日時：<%= user.user_deleted_at %></br>
-				<% end %>
-			<% end %>
+				            <% @shops_search.each do |shop| %>
+				            <div class="text" style="display: flex;">
+				                <% if shop.shop_deleted_at == nil %>
+				                    <%= link_to shop_path(shop.id) do %>
+				                    <div style="display: inline-block; margin-bottom: 30px;">
+				                    	<%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161" %></br>
+				                    </div>
+									<div class="text" style="display: inline-block; margin-left:15px;">
+				                        <%= shop.shop_name %></br>
+				                        <%= shop.shop_introduction %></br>
+				                        <%= shop.prefecture %></br>
+				                    </div>
+				                    <% end %>
+				                <% end %>
+				            </div>
+				            <% end %>
+				    <% else %>
+				    	<h2 class="text">ユーザーの一覧</h2>
+							<% @user_search.each do |user| %>
+							<div class="text" style="display: flex;">
+								<%= link_to user_path(user.id) do %>
+									<div style="display: inline-block; margin-bottom: 30px;">
+										<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161", class: "user-image" %></br>
+									</div>
+									<div class="text" style="display: inline-block; margin-left:15px;">
+										名前：<%= user.user_name %></br>
+										カナ：<%= user.kana_user_name %></br>
+										ニックネーム：<%= user.nick_name %></br>
+										退会日時：<%= user.user_deleted_at %></br>
+									</div>
+								<% end %>
+							</div>
+							<% end %>
 
-		<h2>お店一覧</h2>
-            <% @shops_search.each do |shop| %>
-                <% if shop.shop_deleted_at == nil %>
-                    <%= link_to shop_path(shop.id) do %>
-                        <%= shop.shop_name %></br>
-                        <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br>
-                        <%= shop.shop_introduction %></br>
-                        <%= shop.prefecture %></br>
-                    <% end %>
-                <% end %>
-            <% end %>
-    <% end %>
+						<h2>お店一覧</h2>
+				            <% @shops_search.each do |shop| %>
+				            <div class="text" style="display: flex;">
+				                <% if shop.shop_deleted_at == nil %>
+				                    <%= link_to shop_path(shop.id) do %>
+				                    <div style="display: inline-block; margin-bottom: 30px;">
+				                        <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161" %></br>
+				                    </div>
+				                        <div class="text" style="display: inline-block; margin-left:15px;">
+				                        	<%= shop.shop_name %></br>
+				                        	<%= shop.shop_introduction %></br>
+				                        	<%= shop.prefecture %></br>
+				                    	</div>
+				                    <% end %>
+				                <% end %>
+				            </div>
+				            <% end %>
+				    <% end %>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

@@ -94,7 +94,6 @@ class ProductsController < ApplicationController
           @shops = Kaminari.paginate_array(@shops).page(params[:page])
           @products = Kaminari.paginate_array(@products).page(params[:page])
           @search = "true"
-          redirect_to search_path(current_user.id)
         else
 
           if user_signed_in?

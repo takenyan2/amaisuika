@@ -25,6 +25,22 @@ class ShopsController < ApplicationController
   end
 
   def new
+    if params[:content]
+          @products = Product.where('product_name LIKE ?', "%#{params[:content]}%") + Product.where('product_introduction LIKE ?', "%#{params[:content]}%")
+           # shops_id = @shops.map{|shop| shop.id}
+           # products_id = @products.map{|product| product.id}
+            # @shops = shops_id.map{|i| Shop.find(i)}
+          @products = Kaminari.paginate_array(@products).page(params[:page])
+          @search = "true"
+    else
+
+      if user_signed_in?
+        @user = User.find(current_user.id)
+        @products = Product.all
+      else
+        @products = Product.all
+      end
+    end
   end
 
   def show

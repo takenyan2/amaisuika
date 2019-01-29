@@ -1,0 +1,109 @@
+/*------------------------------------*/
+/*          	shop_show 	          */
+/*------------------------------------*/
+/* line 10, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.shop-main-title {
+  text-align: center;
+}
+
+/* line 14, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.shop-prefecture {
+  /*float:right;*/
+}
+
+/* line 18, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.shop-main-image img {
+  width: 100%;
+  height: auto;
+  background-position: center;
+  margin-bottom: 20px;
+}
+
+/* line 25, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.shop-sub-main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* line 30, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.shop-follow {
+  /*float:left;*/
+  width: 30%;
+  display: inline-block;
+}
+
+/* line 36, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.shop-edit {
+  /*float:right;*/
+}
+
+/* line 40, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.media-left {
+  height: 250px;
+  width: 30%;
+  /*float: left*/
+}
+
+/* line 46, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.media-title {
+  height: 30%;
+}
+
+/* line 50, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.product-sub-price {
+  /*float:left;*/
+  font-size: 30px;
+  color: black;
+}
+
+/* line 55, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.product-subtext {
+  /*float:left;*/
+  font-size: 30px;
+  color: black;
+  height: 70%;
+}
+
+/* line 62, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.media-title {
+  font-size: 40px;
+  color: black;
+}
+
+/* line 67, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.media-body {
+  /*float:left;*/
+}
+
+/* line 71, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.product-introduction {
+  /*float:left;*/
+}
+
+/* line 75, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.admin-edit {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* line 79, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.admin-destroy {
+  display: inline-block;
+}
+
+/* line 83, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.shop-main-info {
+  font-size: 20px;
+  /*float:left;*/
+}
+
+/* line 88, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.shop-product-info {
+  /*float:left;*/
+}
+
+/* line 95, /vagrant/amaisuika/app/assets/stylesheets/shops.scss */
+.fav-contents-text {
+  width: 130px !important;
+  height: 130px;
+}

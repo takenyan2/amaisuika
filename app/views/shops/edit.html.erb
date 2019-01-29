@@ -1,35 +1,51 @@
-<h1>お店の情報を編集する</h1>
-		<%= form_for @shop do |f| %>
+<div class="back-image">
+<div class="back-color">
 
-			<div class="field">
-			<%= f.label :都道府県 %><br />
-			<%= f.select :prefecture, Shop.prefectures.keys, {prompt: '選択してください'}, autofocus: true %>
+<div class=shop-main style="margin-top: 55px;">
+    <div class=shop-sub-main>
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-12" style="text-align: center;">
+
+                <h1 class="text" style="margin:40px 0px;">お店の情報を編集する</h1>
+					<%= form_for @shop do |f| %>
+
+						<div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+						<%= f.label :【都道府県】, class: "text" %><br />
+						<%= f.select :prefecture, Shop.prefectures.keys, {prompt: '選択してください'}, autofocus: true %>
+						</div>
+
+						<div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+						<%= f.label :【お店の名前】, class: "text" %><br />
+						<%= f.text_field :shop_name, autofocus: true, autocomplete: "shop_name", placeholder:"お店の名前を記入" %>
+						</div>
+
+						<div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+						<%= f.label :【お店の説明】, class: "text" %><br />
+						<%= f.text_area :shop_introduction, autofocus: true, placeholder:"お店のコンセプトや情報を記入" %>
+						</div>
+
+						<div class="text" style=" font-size: 30px;">【プロフィール画像】</div><%= f.attachment_field :shop_image, class: "text", style: "margin-bottom:20px; margin-right:43%; margin-left:43%; font-size: 15px;"%>
+
+						<div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+						<%= f.label :【発送までの期間】, class: "text" %><br />
+						<%= f.number_field :send_period, autofocus: true, autocomplete: "send_period", placeholder:"半角数字を記入" %>日以内
+						</div>
+
+						<div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+						<%= f.label :【お問合せ先の電話番号】, class: "text" %><br />
+						<%= f.text_field :shop_phone_number, autofocus: true, autocomplete: "shop_phone_number", placeholder:"電話番号を記入" %>
+						</div>
+
+						<div class="actions text" style="margin-bottom: 75px; font-size: 30px;">
+						<%= f.submit "お店情報を更新する", class: "btn btn-default text", style:"font-size:40px; padding:10px 30px; margin-top:20px;" %>
+						</div>
+
+					<% end %>
 			</div>
-
-			<div class="field">
-			<%= f.label :お店の名前 %><br />
-			<%= f.text_field :shop_name, autofocus: true, autocomplete: "shop_name", placeholder:"お店の名前を記入" %>
 			</div>
-
-			<div class="field">
-			<%= f.label :お店の説明 %><br />
-			<%= f.text_area :shop_introduction, autofocus: true, placeholder:"お店のコンセプトや情報を記入" %>
-			</div>
-
-			プロフィール画像：<%= f.attachment_field :shop_image, style: "color: black;" %>
-
-			<div class="field">
-			<%= f.label :発送までの期間 %><br />
-			<%= f.number_field :send_period, autofocus: true, autocomplete: "send_period", placeholder:"半角数字を記入" %>日以内に商品を発送します
-			</div>
-
-			<div class="field">
-			<%= f.label :お問合せ先の電話番号 %><br />
-			<%= f.text_field :shop_phone_number, autofocus: true, autocomplete: "shop_phone_number", placeholder:"電話番号を記入" %>
-			</div>
-
-			<div class="actions">
-			<%= f.submit "お店情報を更新する" %>
-			</div>
-
-		<% end %>
+		</div>
+	</div>
+</div>
+</div>
+</div>

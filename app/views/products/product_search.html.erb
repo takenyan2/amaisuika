@@ -15,8 +15,8 @@
 <!-- 検索結果の表示 -->
 	<%if @search == "true" %>
         <h2 class="text" style="margin-top: 0px; padding-top: 30px;">検索結果</h2>
-        <div class="user-products clearfix">
-        <div class="user-favorites clearfix">
+        <div class="user-products">
+        <div class="user-favorites">
             <% @products.each do |product| %>
                 <% if product.permission == false %>
                     <div class="product-info">
@@ -24,8 +24,8 @@
                             <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg" %></br>
                                 </div>
                             <div class="product-title" style="width:100%; height:50px;">
-                                <div class="product-name text"><%= product.product_name %></div>
-                                <div class="product-price text"><%= product.product_price %></div>
+                                <div class="product-name text" style="font-size: 20px;">【<%= product.product_name %>】</div>
+                                <div class="product-price text"><%= product.product_price %>円</div>
                             </div>
                             <div class="product-introduction text" style="width:100%; height:150px;"><%= product.product_introduction %></br>
                             </div>
@@ -45,7 +45,7 @@
                         <%= link_to shop_path(shop.id) do %>
                         <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
                         <div class="product-title" style="width:100%; height:50px;">
-                            <div class="product-name text"><%= shop.shop_name %></div>
+                            <div class="product-name text" style="font-size: 20px;">【<%= shop.shop_name %>】</div>
                             <div class="product-price text"><%= shop.prefecture %></div>
                         </div>
                         <div class="product-introduction text" style="width:100%; height:150px;">
@@ -81,7 +81,7 @@
                                 <div class="product-image"><%= attachment_image_tag fav.product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg" %></br>
                                 </div>
                                 <div class="product-title" style="width:100%; height:50px;">
-                                    <div class="product-name text" ><%= fav.product.product_name %></div>
+                                    <div class="product-name text"style="font-size: 20px;" >【<%= fav.product.product_name %>】</div>
                                     <div class="product-price text"><%= fav.product.product_price %>円</br></div>
                                 </div>
                                 <div class="product-introduction text" style="width:100%; height:150px;"><%= fav.product.product_introduction %></br>
@@ -104,7 +104,7 @@
                             <%= link_to shop_path(fol.shop.id) do %>
                                 <div class="shop-image"><%= attachment_image_tag fol.shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg" %></br></div>
                                 <div class="product-title" style="width:100%; height:50px;">
-                                    <div class="product-name text"><%= fol.shop.shop_name %></div>
+                                    <div class="product-name text" style="font-size: 20px;">【<%= fol.shop.shop_name %>】</div>
                                     <div class="product-price text"><%= fol.shop.prefecture %></br></div>
                                 </div>
                                 <div class="product-introduction text" style="width:100%; height:150px;">
@@ -128,7 +128,7 @@
                             <%= link_to product_path(product.id) do %>
                                 <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
                                 <div class="product-title" style="width:100%; height:50px;">
-                                    <div class="product-name text"><%= product.product_name %></br></div>
+                                    <div class="product-name text" style="font-size: 20px;">【<%= product.product_name %>】</br></div>
                                     <div class="product-price terxt"><%= product.product_price %>円</br></div>
                                 </div>
                                 <div class="product-introduction text" style="width:100%; height:150px;">
@@ -151,11 +151,11 @@
                         <div class="product-info">
                             <%= link_to shop_path(shop.id) do %>
                                 <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
-                                <div class="product-title" style="width:100%; height:50px;">
-                                    <div class="product-name text"><%= shop.shop_name %></div>
-                                    <div class="product-price text"><%= shop.prefecture %></br></div>
+                                <div class="product-title" style="width:100%; height:50px; ">
+                                    <div class="product-name text" style="font-size: 20px;">【<%= shop.shop_name %>】</div>
+                                    <div class="product-price text"><%= shop.prefecture %>円</br></div>
                                 </div>
-                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                <div class="product-introduction text" style="width:100%; height:150px;" >
                                 <%= shop.shop_introduction %></br>
                                 </div>
                             <% end %>
@@ -183,7 +183,7 @@
                             <%= link_to product_path(product.id) do %>
                                 <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
                                 <div class="product-title" style="width:100%; height:50px;">
-                                    <div class="product-name text"><%= product.product_name %></div>
+                                    <div class="product-name text" style="font-size: 20px;">【<%= product.product_name %>】</div>
                                     <div class="product-price text"><%= product.product_price %></br></div>
                                 </div>
                                 <div class="product-introduction text" style="width:100%; height:150px;">
@@ -207,7 +207,7 @@
                             <%= link_to shop_path(shop.id) do %>
                                 <div class="shop-image"><%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
                                 <div class="product-title" style="width:100%; height:50px;">
-                                    <div class="product-name text"><%= shop.shop_name %></br></div>
+                                    <div class="product-name text" style="font-size: 20px;">【<%= shop.shop_name %>】</br></div>
                                     <div class="product-price text"><%= shop.prefecture %></br></div>
                                 </div>
                                 <div class="product-introduction text" style="width:100%; height:150px;">

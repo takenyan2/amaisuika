@@ -1,22 +1,46 @@
-<h1>申請中の商品一覧</h1>
-	<% if @products.present? %>
-		<% @products.each do |product| %>
-			<% if product.permission == true %>
-			 	<% product.images.each do |image| %>
-			 	<%= attachment_image_tag image, :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %>
-			<% end %>
-				 <br><%= product.product_name %></br>
-				 <%= product.product_introduction %></br>
-				 <%= product.product_genre %></br>
-				 <%= product.product_price %></br>
-				 <%= product.product_stock %></br>
-				 <%= link_to "許可", users_path(permission: true, product_id: product.id) %>
-				 <%= link_to "拒否", users_path(permission: false, product_id: product.id), "data-confirm" => "拒否するとこの商品は削除されます。本当に拒否しますか？" %></br>
-			 <% end %>
-		<% end %>
-	<% else %>
-		<h2>現在申請中の商品はありません</h2>
-	<% end %>
+<div class="back-image">
+<div class="back-top-color">
+
+<div class=shop-main style="margin-top: 55px;">
+    <div class=shop-sub-main>
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-12" style="text-align: center;">
+
+                <h1 class="text" style="margin:40px 0px;">申請中の商品一覧</h1>
+					<% if @products.present? %>
+					<div style="width:100%; height:600px; overflow:auto;">
+						<% @products.each do |product| %>
+						<div class="text" style="display: flex;">
+							<% if product.permission == true %>
+							 	<% product.images.each do |image| %>
+							 	<div style="display: inline-block; margin-bottom: 30px; margin-right: 7px">
+							 		<%= attachment_image_tag image, :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "161x161" %>
+							 	</div>
+								<% end %>
+									<div class="text" style="display: inline-block; margin-left:15px; text-align: left;">
+										 <br>【<%= product.product_name %>】<%= product.product_price %>円</br>
+										 ジャンル：〔<%= product.product_genre %>〕 在庫数：<%= product.product_stock %>個</br>
+										 説明：<%= product.product_introduction %></br>
+									</div>
+								<div style="text-align: right; margin-left: 2%; margin-top: 80px;">
+									<%= link_to "許可", users_path(permission: true, product_id: product.id),class: "btn btn-success user-edit text" ,style: "color: white; font-size:30px; margin-right:20px;" %>
+									<%= link_to "拒否", users_path(permission: false, product_id: product.id), "data-confirm" => "拒否するとこの商品は削除されます。本当に拒否しますか？",class: "btn btn-danger user-edit text" ,style: "color: white; font-size:30px;" %></br>
+								</div>
+							<% end %>
+						</div>
+						<% end %>
+					</div>
+					<% else %>
+						<h2>現在申請中の商品はありません</h2>
+					<% end %>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
 
 
 

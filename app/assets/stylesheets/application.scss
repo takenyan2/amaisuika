@@ -49,6 +49,11 @@ height: 21px;
 display: inline-block;
 }
 
+.back-top-color{
+	background-color:rgba(241, 254, 143,0.9);
+	z-index: 1;
+}
+
 .back-color{
 	background-color:#FFFF99;
 	opacity: 0.9;
@@ -79,6 +84,13 @@ a:hover {
 	color:black;
 }
 
+.login-user-image{
+	width:15%;
+}
+
+.login-shop-image{
+	width:15%;
+}
 /*--------------- header ---------------*/
 header {
 	height: 60px;

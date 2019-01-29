@@ -1,0 +1,175 @@
+@charset "UTF-8";
+/*------------------------------------*/
+/*           product_search           */
+/*------------------------------------*/
+/* line 10, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.blog-main-visual {
+  width: 100%;
+  height: 500px;
+  background-image: url("/rawpixel-653771-unsplash.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+/* line 22, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.blog-main-visual-content {
+  height: 300px;
+  /*text-align: center;*/
+  margin-left: 280px;
+  padding-top: 90px;
+  padding-left: 50px;
+}
+
+/* line 30, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.blog-main-visual-text {
+  letter-spacing: 2px;
+  color: white;
+  font-family: "游明朝体","YuMincho";
+  font-weight: 900;
+  margin-top: 45px;
+  font-size: 25px;
+}
+
+/* line 38, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product_seach_main {
+  width: 100%;
+}
+
+/* line 41, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product_seach_sub {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* line 46, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-image img {
+  width: 100%;
+  height: 250px;
+}
+
+/* line 51, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.shop-image img {
+  width: 100%;
+  height: 250px;
+}
+
+/* line 56, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.user-products {
+  width: 100%;
+  height: auto;
+}
+
+/* line 61, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.user-favorites, .user-follows {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* line 66, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-info {
+  width: 19%;
+  height: 450px;
+  float: left;
+  margin: 30px 7%;
+}
+
+/* line 74, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-name {
+  /*float:left;*/
+}
+
+/* line 78, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-price {
+  /*float:right;*/
+  font-size: 15px;
+}
+
+/* line 83, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-choice {
+  width: 21%;
+  height: 450px;
+  /*float:left;*/
+  margin: 30px 6%;
+}
+
+/*------------------------------------*/
+/*           product_show             */
+/*------------------------------------*/
+/* line 96, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-main-name {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* line 101, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-star {
+  text-align: center;
+}
+
+/*.star-ratings-sprite img{
+	font-size: 50px;
+}*/
+/* line 109, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-review {
+  text-align: center;
+}
+
+/* line 113, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-show-main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* line 118, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-images img {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 20px;
+  max-width: 1200px;
+  /* 最大幅 */
+  min-width: 240px;
+  /* 最小幅 */
+}
+
+/* line 127, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-show-images {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* line 132, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.glyphicon {
+  font-size: 40px;
+  display: inline-block;
+}
+
+/* line 136, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.favorite-text {
+  font-size: 40px;
+  display: inline-block;
+}
+
+/* line 141, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-show-info {
+  /*float:right;*/
+  font-size: 30px;
+}
+
+/* line 146, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-main-price {
+  display: inline-block;
+  /*float: right;*/
+  font-size: 40px;
+}
+
+/* line 152, /vagrant/amaisuika/app/assets/stylesheets/products.scss */
+.product-main-stock {
+  display: inline-block;
+  /*float: right;*/
+  line-height: 50px;
+}

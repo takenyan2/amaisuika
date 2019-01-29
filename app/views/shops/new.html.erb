@@ -1,2 +1,109 @@
-<h1>Shops#new</h1>
-<p>Find me in app/views/shops/new.html.erb</p>
+<div class="main">
+	<!-- ===== 画像 ===== -->
+<div class="blog-main-goods-visual" style="margin-bottom: 0px">
+<div class="blog-main-goods-visual-second">
+    <div class="blog-main-goods-visual-content">
+        <p class="blog-main-goods-visual-text">
+           	スイカは、</br>
+           あなたを更に可愛くする。
+        </p>
+    </div>
+</div>
+<div class="back-image">
+<div class="back-color">
+<div class="product_seach_main">
+<div class="product_seach_sub">
+
+<!-- 一般ユーザーの表示 -->
+
+        <% if user_signed_in? && current_user.user_status == "一般ユーザー" %>
+        <ul class="nav nav-tabs">
+            <li class="active text"><a href="#sampleContentA" data-toggle="tab">お気に入りしたスイカグッズ</a></li>
+            <li class="text"><a href="#sampleContentB" data-toggle="tab">新着スイカグッズ</a></li>
+        </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="sampleContentA">
+            <h2 class="text">お気に入りしたスイカグッズ</h2>
+            <div class="user-products clearfix">
+            <div class="user-favorites clearfix">
+                <% @user.favorites.each do |fav| %>
+                <% if fav.product.product_genre != "飲食物"%>
+                    <% if fav.product.permission == false %>
+                        <div class="product-info">
+                            <%= link_to product_path(fav.product.id) do %>
+                                <div class="product-image"><%= attachment_image_tag fav.product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg" %></br>
+                                </div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text" >【<%= fav.product.product_name %>】</div>
+                                    <div class="product-price text"><%= fav.product.product_price %>円</br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;"><%= fav.product.product_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="sampleContentB">
+            <h2 class="text">新着スイカグッズ</h2>
+            <div class="user-products clearfix">
+            <div class="user-favorites clearfix">
+                <% @products.each do |product| %>
+                <% if product.product_genre != "飲食物"%>
+                    <% if product.permission == false %>
+                        <div class="product-info">
+                            <%= link_to product_path(product.id) do %>
+                                <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text">【<%= product.product_name %>】</br></div>
+                                    <div class="product-price text"><%= product.product_price %>円</br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                    <%= product.product_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+                <% end %>
+            </div>
+            </div>
+        </div>
+    </div>
+<!-- 管理者とログアウト時の表示 -->
+        <% else %>
+            <h2 class="text"  style="padding-top: 30px;">新着スイカグッズ</h2>
+            <div class="user-products clearfix">
+            <div class="user-favorites clearfix">
+                <% @products.each do |product| %>
+                <% if product.product_genre != "飲食物"%>
+                    <% if product.permission == false %>
+                        <div class="product-info">
+                            <%= link_to product_path(product.id) do %>
+                                <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
+                                <div class="product-title" style="width:100%; height:50px;">
+                                    <div class="product-name text">【<%= product.product_name %>】</div>
+                                    <div class="product-price text"><%= product.product_price %>円</br></div>
+                                </div>
+                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                    <%= product.product_introduction %></br>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end%>
+                <% end %>
+            </div>
+            </div>
+    </div>
+        <% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

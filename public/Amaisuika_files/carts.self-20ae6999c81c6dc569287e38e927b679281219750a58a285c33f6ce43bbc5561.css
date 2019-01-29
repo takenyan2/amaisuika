@@ -1,0 +1,17 @@
+/*------------------------------------*/
+/*          	carts-show 	          */
+/*------------------------------------*/
+/* line 10, /vagrant/amaisuika/app/assets/stylesheets/carts.scss */
+.cart-product-main {
+  display: flex;
+}
+
+/* line 14, /vagrant/amaisuika/app/assets/stylesheets/carts.scss */
+.cart-products-text {
+  margin-top: 20px;
+}
+
+/* line 18, /vagrant/amaisuika/app/assets/stylesheets/carts.scss */
+.cart-product-destroy {
+  margin-top: 200px;
+}

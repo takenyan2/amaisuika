@@ -1,0 +1,12 @@
+/*------------------------------------*/
+/*          	users-show 	          */
+/*------------------------------------*/
+/* line 10, /vagrant/amaisuika/app/assets/stylesheets/users.scss */
+.item-total-history {
+  display: inline-block;
+}
+
+/* line 13, /vagrant/amaisuika/app/assets/stylesheets/users.scss */
+.item-history {
+  display: inline-block;
+}

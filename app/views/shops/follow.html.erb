@@ -1,12 +1,39 @@
-<h1>フォロワーの一覧</h1>
+<div class="back-image">
+<div class="back-color">
 
-	<%= current_shop.follows.count %>人のフォロワー</br>
-		<% current_shop.follows.each do |follow| %>
-			<% if follow.user.user_deleted_at == nil %>
-				<%#= link_to user_path(follow.user.id) do %>
-				<%= attachment_image_tag follow.user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "300x300", class: "user-image" %></br>
-				ニックネーム：<%= follow.user.nick_name %>
-				退会日時：<%= follow.user.user_deleted_at %>
-				<%# end %>
-			<% end %>
-		<% end %>
+<div class=shop-main style="margin-top: 55px;">
+    <div class=shop-sub-main>
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-12" style="text-align: left;">
+
+                <h1 class="text" style="margin:40px 0px;">フォロワーの一覧</h1>
+
+					<h2 class="text">〔<%= current_shop.follows.count %>人のフォロワー 〕</h2></br>
+					<div>
+						<% current_shop.follows.each do |follow| %>
+						<div style="overflow: scroll; width:100%; height: 510px;">
+							<% if follow.user.user_deleted_at == nil %>
+								<%#= link_to user_path(follow.user.id) do %>
+								<div style=" display: flex; margin-bottom: 20px;">
+									<%= attachment_image_tag follow.user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100", class: "user-image" %></br>
+									<div style="display: block;" >
+										<h3 style="margin-top: 0px; margin-left: 15px;">ニックネーム：<%= follow.user.nick_name %></h3>
+										<% if follow.user.user_deleted_at.nil? %>
+										<h4 style="margin-top: 5px; margin-left: 15px;">一般ユーザー</h4>
+										<% else %>
+										退会日時：<%= follow.user.user_deleted_at %>
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+						</div>
+						<% end %>
+					</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>

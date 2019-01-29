@@ -11,37 +11,37 @@
 
                 <%= form_for @user do |f| %>
 
-                    <div class="field" style="margin-bottom: 20px;">
-                        <%= f.label :【名前】 %><br />
+                    <div class="field" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :【名前】,class: "text" %><br />
                         <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder:"名前をフルネームで記入" %>
                     </div>
 
-                    <div class="field" style="margin-bottom: 20px;">
-                        <%= f.label :【カナ名】 %><br />
+                    <div class="field" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :【カナ名】,class: "text" %><br />
                         <%= f.text_field :kana_user_name, autofocus: true, autocomplete: "kana_user_name", placeholder:"名前をカタカナフルネームで記入" %>
                     </div>
 
-                    <div class="field" style="margin-bottom: 20px;">
-                        <%= f.label :【ニックネーム】 %><br />
+                    <div class="field" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :【ニックネーム】,class: "text" %><br />
                         <%= f.text_field :nick_name, autofocus: true, autocomplete: "nick_name", placeholder:"ここに記入した文字が表示されます" %>
                     </div>
-                    【プロフィール画像】<%= f.attachment_field :user_image,style: "color: black;" ,style:"margin-bottom:20px; margin-right:43%; margin-left:43%;"%>
-                    <div class="field" style="margin-bottom: 20px;">
-                        <%= f.label :【郵便番号】 %><br />
+                    <div class="text" style="font-size: 30px;">【プロフィール画像】</div></br><%= f.attachment_field :user_image,style: "color: black;" ,class: "text",style:"margin-bottom:20px; margin-right:43%; margin-left:43%; font-size: 15px;"%>
+                    <div class="field" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :【郵便番号】,class: "text" %><br />
                         <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder:"郵便番号を記入" %>
                     </div>
 
-                    <div class="field" style="margin-bottom: 20px;">
-                        <%= f.label :【住所】 %><br />
+                    <div class="field" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :【住所】,class: "text" %><br />
                         <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder:"商品の配送先住所を記入" %>
                     </div>
 
-                    <div class="field" style="margin-bottom: 20px;">
-                        <%= f.label :【電話番号】 %><br />
+                    <div class="field" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :【電話番号】,class: "text" %><br />
                         <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:"電話番号を記入" %>
                     </div>
                     <div  style="margin-bottom: 60px;">
-                        <%= f.submit "更新する" , class: "btn btn-default text", style:"font-size:20px; padding:10px 30px; margin-top:20px;"%>
+                        <%= f.submit "更新する" , class: "btn btn-default text", style:"font-size:40px; padding:10px 30px; margin-top:20px;"%>
                     </div>
                 <% end %>
             </div>

@@ -9,7 +9,7 @@
 					<% @carts.each do |cart| %>
 					<% a = cart.product %>
 					<div class="cart-product-main">
-					    <%= attachment_image_tag a.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "260x260", style: "margin-bottom:30px; margin-right:0px; display:flex;" %></br>
+					    <%= attachment_image_tag a.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "260x260", style: "margin-bottom:40px; margin-right:0px; display:flex;" %></br>
 					    <div class="cart-products-text" style="margin-left:20px;">
 						    <h2 class="text" style="margin-top:0px;">
 						    	【<%= a.product_name %>】</h2>

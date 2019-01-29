@@ -1,26 +1,43 @@
-<h2>ログイン</h2>
+<div class="back-image">
+<div class="back-top-color">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレスを記入" %>
-  </div>
+<div class=shop-main style="margin-top: 55px;">
+    <div class=shop-sub-main>
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-12" style="text-align: center;">
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password", placeholder:"パスワードを記入" %>
-  </div>
+                <h2 class="text" style="margin:40px 0px;">ログイン</h2>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+                    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :メールアドレス %><br />
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレスを記入" %>
+                      </div>
+
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :パスワード %><br />
+                        <%= f.password_field :password, autocomplete: "current-password", placeholder:"パスワードを記入" %>
+                      </div>
+
+                      <% if devise_mapping.rememberable? -%>
+                        <div class="field text" style="margin-bottom: 20px; font-size: 20px;">
+                          <%= f.check_box :remember_me %>
+                          <%= f.label :この情報を記憶, class: "text" %>
+                        </div>
+                      <% end -%>
+
+                      <div class="actions">
+                        <%= f.submit "ログインする", class: "btn btn-warning text",style:"font-size: 40px; margin-top:20px; color:white;" %>
+                      </div>
+                    <% end %>
+
+                    <%= render "users/shared/links" %>
+                    <div style="margin-bottom: 90px;"></div>
+            </div>
+            </div>
+        </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
+</div>
+</div>

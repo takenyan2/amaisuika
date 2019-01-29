@@ -1,59 +1,76 @@
-<h2>新規登録</h2>
+<div class="back-image">
+<div class="back-top-color">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div class=shop-main style="margin-top: 55px;">
+    <div class=shop-sub-main>
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-12" style="text-align: center;">
 
-  <div class="field">
-    <%= f.label :名前 %><br />
-    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder:"名前をフルネームで記入" %>
-  </div>
+                <h2 class="text" style="margin:40px 0px;">新規登録</h2>
 
-  <div class="field">
-    <%= f.label :カナ名 %><br />
-    <%= f.text_field :kana_user_name, autofocus: true, autocomplete: "kana_user_name", placeholder:"名前をカタカナフルネームで記入" %>
-  </div>
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                      <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :ニックネーム %><br />
-    <%= f.text_field :nick_name, autofocus: true, autocomplete: "nick_name", placeholder:"ここに記入した文字が表示されます" %>
-  </div>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :名前, class: "text" %><br />
+                        <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder:"名前をフルネームで記入" %>
+                      </div>
 
-  <div class="field">
-    <%= f.label :郵便番号 %><br />
-    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder:"郵便番号を記入" %>
-  </div>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :カナ名, class: "text" %><br />
+                        <%= f.text_field :kana_user_name, autofocus: true, autocomplete: "kana_user_name", placeholder:"名前をカタカナフルネームで記入" %>
+                      </div>
 
-  <div class="field">
-    <%= f.label :住所 %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder:"商品の配送先住所を記入" %>
-  </div>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :ニックネーム, class: "text" %><br />
+                        <%= f.text_field :nick_name, autofocus: true, autocomplete: "nick_name", placeholder:"ここに記入した文字が表示されます" %>
+                      </div>
 
-  <div class="field">
-    <%= f.label :電話番号 %><br />
-    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:"電話番号を記入" %>
-  </div>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :郵便番号, class: "text" %><br />
+                        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder:"郵便番号を記入" %>
+                      </div>
 
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレスを記入" %>
-  </div>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :住所, class: "text" %><br />
+                        <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder:"商品の配送先住所を記入" %>
+                      </div>
 
-  <div class="field">
-    <%= f.label :パスワードを設定 %>
-    <% if @minimum_password_length %>
-    <em>(※<%= @minimum_password_length %> 文字以上の半角英数字で記入してください)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", placeholder:"パスワードを記入" %>
-  </div>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :電話番号, class: "text" %><br />
+                        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:"電話番号を記入" %>
+                      </div>
 
-  <div class="field">
-    <%= f.label :上記と同じパスワードを入力 %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"確認用パスワードを記入" %>
-  </div>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :メールアドレス, class: "text" %><br />
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレスを記入" %>
+                      </div>
 
-  <div class="actions">
-    <%= f.submit "登録して利用する" %>
-  </div>
-<% end %>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :パスワードを設定, class: "text" %>
+                        <% if @minimum_password_length %>
+                        <em class="text"><br>(※<%= @minimum_password_length %> 文字以上の半角英数字で記入してください)</br></em>
+                    <% end %><br />
+                        <%= f.password_field :password, autocomplete: "new-password", placeholder:"パスワードを記入" %>
+                      </div>
 
-<%= render "users/shared/links" %>
+                      <div class="field text" style="margin-bottom: 20px; font-size: 30px;">
+                        <%= f.label :上記と同じパスワードを入力, class: "text" %><br />
+                        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"確認用パスワードを記入" %>
+                      </div>
+
+                      <div class="actions">
+                        <%= f.submit "登録して利用する", class: "btn btn-primary text",style:"font-size: 40px; margin-top:20px; color:white;" %>
+                      </div>
+                    <% end %>
+
+                    <%= render "users/shared/links" %>
+
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
