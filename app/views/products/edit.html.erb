@@ -31,8 +31,10 @@
 						<div class="field text" style="margin-bottom: 20px; font-size: 30px;">
 							【商品の在庫数】<br />
 							<%= f.number_field :product_stock, autofocus: true, placeholder:"商品在庫数"%>個</br>
-							<div class="text" class="font-size: 30px;">【プロフィール画像】</div><br />
-							<%= f.attachment_field :images_product_images, multiple: true, class: "text", style: "margin-bottom:20px; margin-right:43%; margin-left:43%; font-size: 30px;" %></p>
+						</div>
+							<div class="text" style="font-size: 30px;">【商品の画像】</div><br />
+							<div class="text" style="font-size: 15px;">(※最大4枚まで表示できます。)</div><br />
+							<%= f.attachment_field :images_product_images, multiple: true, class: "text", style: "margin-bottom:20px; margin-right:43%; margin-left:43%; font-size: 18px;" %></p>
 							<div class="actions text" style="margin-bottom: 60px;">
 							<%= f.submit "商品を申請する", class: "btn btn-default text", style:"font-size:20px; padding:10px 30px; margin-top:20px;" %>
 						</div>

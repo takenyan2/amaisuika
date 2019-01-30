@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  before_action :check_login
+
+  def check_login
+    if current_user
+      if current_user.user_deleted_at.present?
+          redirect_to user_logout_path
+      end
+    end
+  end
+
   def top
       if  user_signed_in?
         if current_user.user_status == "一般ユーザー"
@@ -37,41 +47,46 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    if @user.id == current_user.id || current_user.user_status == "管理者"
-        @day_histories = [] #day_histories初期化
-        purchase_histories = @user.purchase_histories.order(purchase_at: :desc)
-        purchase_histories.each do |purchase_history|
-          day = purchase_history.purchase_at
-          day_history = {}
-          @day_histories.each do |history|
-            if day == history["day"]
-              day_history = history
-              break
+    if user_signed_in?
+      @user = User.find(params[:id])
+      if @user.id == current_user.id || current_user.user_status == "管理者"
+          @day_histories = [] #day_histories初期化
+          purchase_histories = @user.purchase_histories.order(purchase_at: :desc)
+          purchase_histories.each do |purchase_history|
+            day = purchase_history.purchase_at
+            day_history = {}
+            @day_histories.each do |history|
+              if day == history["day"]
+                day_history = history
+                break
+              end
+            end
+
+            if day_history.empty?
+              day_history["subtotal"] = 0
+              day_history["items"] = []
+              day_history["day"] = day
+              @day_histories.push(day_history)
+            end
+
+            purchase_history.purchase_items.each do |item|
+              day_history["subtotal"] += item.purchase_product_price * item.purchase_product_quantity
+                item_name = item.purchase_product_name
+                item_price = item.purchase_product_price
+                item_quantity = item.purchase_product_quantity
+                item_status = purchase_history.send_status
+                item_total_price = item.purchase_product_total_price
+                item_image = item.purchase_product_image_id
+              day_history["items"].unshift([item_name, item_price, item_quantity, item_status, item_total_price,item_image])
             end
           end
-
-          if day_history.empty?
-            day_history["subtotal"] = 0
-            day_history["items"] = []
-            day_history["day"] = day
-            @day_histories.push(day_history)
-          end
-
-          purchase_history.purchase_items.each do |item|
-            day_history["subtotal"] += item.purchase_product_price * item.purchase_product_quantity
-              item_name = item.purchase_product_name
-              item_price = item.purchase_product_price
-              item_quantity = item.purchase_product_quantity
-              item_status = purchase_history.send_status
-              item_total_price = item.purchase_product_total_price
-              item_image = item.purchase_product_image_id
-            day_history["items"].unshift(item_name, item_price, item_quantity, item_status, item_total_price,item_image)
-          end
-        end
+      else
+        redirect_to root_path
+        flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
+      end
     else
-      redirect_to root_path
-      flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
+        redirect_to root_path
+        flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
     end
   end
 
@@ -130,7 +145,7 @@ class UsersController < ApplicationController
       user = User.find(params[:id])
         user.user_deleted_at = DateTime.now
         user.save
-        redirect_to  destroy_user_session_path
+        redirect_to root_path
   end
 
   private

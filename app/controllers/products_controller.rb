@@ -65,14 +65,14 @@ class ProductsController < ApplicationController
 
   def destroy
       if shop_signed_in?
-         @shop = Shop.find(params[:id])
+          product = Product.find(params[:id])
+          @shop = product.shop
           if @shop.id == current_shop.id
-            product = Product.find(params[:id])
             product.destroy
             redirect_to shop_main_path(current_shop.id)
             flash[:success] = "商品を削除しました。"
           else
-             redirect_to shop_main_path(current_shop.id)
+             redirect_to shop_path(current_shop.id)
           end
       elsif current_user.user_status == "管理者"
             product = Product.find(params[:id])

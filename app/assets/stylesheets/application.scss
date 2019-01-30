@@ -103,6 +103,11 @@ header {
   z-index: 9999;
 }
 
+.fallback-main-color{
+	background-color:#FFFF99;
+	min-height: 750px; /* 最小幅 */
+}
+
 .header-logo{
 	width:18%;
 	height:auto;

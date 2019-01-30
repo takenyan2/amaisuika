@@ -27,7 +27,7 @@
                                 <div class="product-name text" style="font-size: 20px;">【<%= product.product_name %>】</div>
                                 <div class="product-price text"><%= product.product_price %>円</div>
                             </div>
-                            <div class="product-introduction text" style="width:100%; height:150px;"><%= product.product_introduction %></br>
+                            <div class="product-introduction text" style="width:100%; margin-top: 25px;"><%= product.product_introduction %></br>
                             </div>
                   	    <% end %>
                     </div>
@@ -48,7 +48,7 @@
                             <div class="product-name text" style="font-size: 20px;">【<%= shop.shop_name %>】</div>
                             <div class="product-price text"><%= shop.prefecture %></div>
                         </div>
-                        <div class="product-introduction text" style="width:100%; height:150px;">
+                        <div class="product-introduction text" style="width:100%; margin-top: 25px;">
                             <%= shop.shop_introduction %>
                         </div>
                         <% end %>
@@ -84,7 +84,7 @@
                                     <div class="product-name text"style="font-size: 20px;" >【<%= fav.product.product_name %>】</div>
                                     <div class="product-price text"><%= fav.product.product_price %>円</br></div>
                                 </div>
-                                <div class="product-introduction text" style="width:100%; height:150px;"><%= fav.product.product_introduction %></br>
+                                <div class="product-introduction text" style="width:100%; margin-top: 25px;"><%= fav.product.product_introduction %></br>
                                 </div>
                             <% end %>
                         </div>
@@ -107,7 +107,7 @@
                                     <div class="product-name text" style="font-size: 20px;">【<%= fol.shop.shop_name %>】</div>
                                     <div class="product-price text"><%= fol.shop.prefecture %></br></div>
                                 </div>
-                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                <div class="product-introduction text" style="width:100%; margin-top: 25px;">
                                     <%= fol.shop.shop_introduction %></br>
                                 </div>
                             <% end %>
@@ -129,9 +129,9 @@
                                 <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
                                 <div class="product-title" style="width:100%; height:50px;">
                                     <div class="product-name text" style="font-size: 20px;">【<%= product.product_name %>】</br></div>
-                                    <div class="product-price terxt"><%= product.product_price %>円</br></div>
+                                    <div class="product-price text"><%= product.product_price %>円</br></div>
                                 </div>
-                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                <div class="product-introduction text" style="width:100%; margin-top: 25px;">
                                     <%= product.product_introduction %></br>
                                 </div>
                             <% end %>
@@ -155,7 +155,7 @@
                                     <div class="product-name text" style="font-size: 20px;">【<%= shop.shop_name %>】</div>
                                     <div class="product-price text"><%= shop.prefecture %>円</br></div>
                                 </div>
-                                <div class="product-introduction text" style="width:100%; height:150px;" >
+                                <div class="product-introduction text" style="width:100%; margin-top: 25px;" >
                                 <%= shop.shop_introduction %></br>
                                 </div>
                             <% end %>
@@ -184,9 +184,9 @@
                                 <div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "95x95" %></br></div>
                                 <div class="product-title" style="width:100%; height:50px;">
                                     <div class="product-name text" style="font-size: 20px;">【<%= product.product_name %>】</div>
-                                    <div class="product-price text"><%= product.product_price %></br></div>
+                                    <div class="product-price text"><%= product.product_price %>円</br></div>
                                 </div>
-                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                <div class="product-introduction text" style="width:100%; margin-top: 25px;">
                                     <%= product.product_introduction %></br>
                                 </div>
                             <% end %>
@@ -210,7 +210,7 @@
                                     <div class="product-name text" style="font-size: 20px;">【<%= shop.shop_name %>】</br></div>
                                     <div class="product-price text"><%= shop.prefecture %></br></div>
                                 </div>
-                                <div class="product-introduction text" style="width:100%; height:150px;">
+                                <div class="product-introduction text" style="width:100%; margin-top: 25px;">
                                 <%= shop.shop_introduction %></br>
                                 </div>
                             <% end %>

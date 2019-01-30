@@ -19,7 +19,7 @@
 						    	<%= cart.product_quantity %>個</h3></br>
 					    </div>
 					    <div class="cart-product-destroy">
-							<%= link_to "カートから削除", cart_path(cart.id), method: :delete, class: "btn btn-danger text",style: "color: white; font-size:15px;" %></br>
+							<%= link_to "カートから削除", cart_path(cart.id), method: :delete, "data-confirm" => "カートから削除しますか？", class: "btn btn-danger text",style: "color: white; font-size:15px;" %></br>
 						</div>
 					</div>
 				    <% end %>
@@ -40,7 +40,7 @@
 			     			<%= f.hidden_field :send_name, :value => current_user.user_name %>
 			     			<%= f.hidden_field :send_address , :value => current_user.address  %>
 			     			<%= f.hidden_field :@total_price , :value => @total_price  %>
-			     			<%= f.submit "購入する", class: "btn btn-success text", style: "color:white; margin-bottom:20px; font-size:25px;"%>
+			     			<%= f.submit "購入する", "data-confirm" => "購入するとキャンセルはできません。本当に購入しますか？", class: "btn btn-success text", style: "color:white; margin-bottom:20px; font-size:25px;"%>
 			     		<% end %>
 			     	</div>
 			     	<div class="test test02" style="color: black; margin-top: 10px; display: none;">

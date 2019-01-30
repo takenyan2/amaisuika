@@ -1,4 +1,14 @@
 class ShopsController < ApplicationController
+    before_action :check_login
+
+  def check_login
+    if current_shop
+      if current_shop.shop_deleted_at.present?
+          redirect_to shop_logout_path
+      end
+    end
+  end
+
   def main
 
   end
@@ -94,7 +104,7 @@ class ShopsController < ApplicationController
     shop = Shop.find(params[:id])
         shop.shop_deleted_at = DateTime.now
         shop.save
-        redirect_to destroy_shop_session_path
+        redirect_to root_path
   end
 
   private

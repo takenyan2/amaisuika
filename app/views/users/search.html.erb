@@ -31,11 +31,11 @@
 					<% end %>
 
 					<div style="text-align: right;">
-					<%=link_to "退会する", user_path, "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger text", style:"font-size:20px; padding:10px 30px; margin-top:20px;"  %>
+					<%=link_to "退会する", user_path(current_user.id), "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger text", style:"font-size:20px; padding:10px 30px; margin-top:20px;"  %>
 					</div>
 
 					<div style="text-align: right; margin-top:60px;">
-						<h2 class="text">※ユーザー検索</h2>
+						<h2 class="text">※ユーザー・お店を検索</h2>
 					<%= form_tag(search_path, method: :get) do %>
 				      <%= text_field_tag(:content,'', :placeholder => "検索してください", class: "btn btn-default text") %>
 				      <%= submit_tag "検索する", class: "btn btn-default text", style:"font-size:15px; padding:10px 30px; margin-top:5px;" %>
@@ -47,16 +47,28 @@
 					    <h2 class="text">検索結果</h2>
 							<% @user_search.each do |user| %>
 							<div class="text" style="display: flex;">
-								<%= link_to user_path(user.id) do %>
-								<div style="display: inline-block; margin-bottom: 30px;">
-									<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161", class: "user-image" %></br>
-								</div>
-									<div class="text" style="display: inline-block; margin-left:15px;">
-										名前：<%= user.user_name %></br>
-										カナ：<%= user.kana_user_name %></br>
-										ニックネーム：<%= user.nick_name %></br>
-										退会日時：<%= user.user_deleted_at %></br>
+								<% if user.user_deleted_at.nil? %>
+									<%= link_to user_path(user.id) do %>
+									<div style="display: inline-block; margin-bottom: 30px;">
+										<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161", class: "user-image" %></br>
 									</div>
+										<div class="text" style="display: inline-block; margin-left:15px;">
+											名前：<%= user.user_name %></br>
+											カナ：<%= user.kana_user_name %></br>
+											ニックネーム：<%= user.nick_name %></br>
+											退会日時：<%= user.user_deleted_at %></br>
+										</div>
+									<% end %>
+								<% else %>
+									<div style="display: inline-block; margin-bottom: 30px;">
+										<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161", class: "user-image" %></br>
+									</div>
+										<div class="text" style="display: inline-block; margin-left:15px;">
+											名前：<%= user.user_name %></br>
+											カナ：<%= user.kana_user_name %></br>
+											ニックネーム：<%= user.nick_name %></br>
+											退会日時：<%= user.user_deleted_at %></br>
+										</div>
 								<% end %>
 							</div>
 							<% end %>
@@ -70,10 +82,20 @@
 				                    </div>
 									<div class="text" style="display: inline-block; margin-left:15px;">
 				                        <%= shop.shop_name %></br>
-				                        <%= shop.shop_introduction %></br>
 				                        <%= shop.prefecture %></br>
+				                        <%= shop.shop_introduction %></br>
 				                    </div>
 				                    <% end %>
+				                <% else %>
+				              		<div style="display: inline-block; margin-bottom: 30px;">
+				                        <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161" %></br>
+				                    </div>
+				                        <div class="text" style="display: inline-block; margin-left:15px;">
+				                        	<%= shop.shop_name %></br>
+				                        	<%= shop.prefecture %></br>
+				                        	<%= shop.shop_introduction %></br>
+				                        	<%= shop.shop_deleted_at %>に閉店</br>
+				                    	</div>
 				                <% end %>
 				            </div>
 				            <% end %>
@@ -81,21 +103,32 @@
 				    	<h2 class="text">ユーザーの一覧</h2>
 							<% @user_search.each do |user| %>
 							<div class="text" style="display: flex;">
-								<%= link_to user_path(user.id) do %>
-									<div style="display: inline-block; margin-bottom: 30px;">
-										<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161", class: "user-image" %></br>
-									</div>
-									<div class="text" style="display: inline-block; margin-left:15px;">
-										名前：<%= user.user_name %></br>
-										カナ：<%= user.kana_user_name %></br>
-										ニックネーム：<%= user.nick_name %></br>
-										退会日時：<%= user.user_deleted_at %></br>
-									</div>
+								<% if user.user_deleted_at.nil? %>
+									<%= link_to user_path(user.id) do %>
+										<div style="display: inline-block; margin-bottom: 30px;">
+											<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161", class: "user-image" %></br>
+										</div>
+										<div class="text" style="display: inline-block; margin-left:15px;">
+											名前：<%= user.user_name %></br>
+											カナ：<%= user.kana_user_name %></br>
+											ニックネーム：<%= user.nick_name %></br>
+											退会日時：<%= user.user_deleted_at %></br>
+									<% end %>
+								<% else %>
+										<div style="display: inline-block; margin-bottom: 30px;">
+											<%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161", class: "user-image" %></br>
+										</div>
+										<div class="text" style="display: inline-block; margin-left:15px;">
+											名前：<%= user.user_name %></br>
+											カナ：<%= user.kana_user_name %></br>
+											ニックネーム：<%= user.nick_name %></br>
+											退会日時：<%= user.user_deleted_at %></br>
 								<% end %>
+									</div>
 							</div>
 							<% end %>
 
-						<h2>お店一覧</h2>
+						<h2 class="text">お店一覧</h2>
 				            <% @shops_search.each do |shop| %>
 				            <div class="text" style="display: flex;">
 				                <% if shop.shop_deleted_at == nil %>
@@ -105,10 +138,20 @@
 				                    </div>
 				                        <div class="text" style="display: inline-block; margin-left:15px;">
 				                        	<%= shop.shop_name %></br>
-				                        	<%= shop.shop_introduction %></br>
 				                        	<%= shop.prefecture %></br>
+				                        	<%= shop.shop_introduction %></br>
 				                    	</div>
 				                    <% end %>
+				              	<% else %>
+				              		<div style="display: inline-block; margin-bottom: 30px;">
+				                        <%= attachment_image_tag shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg", size: "161x161" %></br>
+				                    </div>
+				                        <div class="text" style="display: inline-block; margin-left:15px;">
+				                        	<%= shop.shop_name %></br>
+				                        	<%= shop.prefecture %></br>
+				                        	<%= shop.shop_introduction %></br>
+				                        	<%= shop.shop_deleted_at %>に閉店</br>
+				                    	</div>
 				                <% end %>
 				            </div>
 				            <% end %>

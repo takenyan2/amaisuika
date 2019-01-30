@@ -6,8 +6,8 @@
       		<%= attachment_image_tag @user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "400x400", class: "user-image", style: "display: inline-block;"%></br>
           		<h2 class="text" style="margin-bottom:0;"><%= @user.nick_name %></h2></br>
           		<h3 class="text" style="margin-top:0px;">(<%= @user.user_status %>)</h3></br>
-          		<%= link_to "ユーザー情報を編集", edit_user_path(current_user.id) ,class: "btn btn-primary user-edit text" ,style: "color: white; font-size:30px;" %></br>
-               	<%=link_to "退会する", user_path(@user), "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger text",style: "color: white; margin-top: 10px; font-size:30px;" %>
+          		<%= link_to "ユーザー情報を編集", edit_user_path(@user.id) ,class: "btn btn-primary user-edit text" ,style: "color: white; font-size:30px;" %></br>
+               	<%=link_to "退会する", user_path(@user.id), "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger text",style: "color: white; margin-top: 10px; font-size:30px;" %>
        </div>
            	<h2 class="text" style="margin-bottom: 20px;">【お気に入りした商品】</h2>
             <div class="col-sm-6" style="width:50%; height:600px; overflow:auto;">
@@ -41,13 +41,15 @@
             <div style="width:100%; height:400px; overflow:auto;">
                 <% @day_histories.each do |his| %>
                 <h3 class="item-total-history text"><%= his["day"].year %>年<%= his["day"].month %>月<%= his["day"].day %>日</h3></br>
-                    <div style="border: 3px solid rgba(32, 151, 44,0.5); width:50%;">
-                        <h4 class="item-history text">商品名：<%= his["items"][0] %></h4></br>
-                        <h4 class="item-history text">値段：<%= his["items"][1] %>円</h4></br>
-                        <h4 class="item-history text">購入個数：<%= his["items"][2] %>個</h4></br>
-                        <h4 class="item-history text">ステータス：<%= his["items"][3] %></h4></br>
-                        <h4 class="item-history text">小計：<%= his["items"][4] %>円</h4></br>
-                    </div>
+                      <% his["items"].each do |item| %>
+                      <div style="border: 3px solid rgba(32, 151, 44,0.5); width:50%; margin-bottom:10px;">
+                        <h4 class="item-history text">商品名：<%= item[0] %></h4></br>
+                        <h4 class="item-history text">値段：<%= item[1] %>円</h4></br>
+                        <h4 class="item-history text">購入個数：<%= item[2] %>個</h4></br>
+                        <h4 class="item-history text">ステータス：<%= item[3] %></h4></br>
+                        <h4 class="item-history text">小計：<%= item[4] %>円</h4></br>
+                        </div>
+                      <% end %>
                 <h3 class="item-total-history text" style="margin-bottom: 35px;">総計：<%= his["subtotal"] %>円</h3></br>
                 <% end %>
             </div>
