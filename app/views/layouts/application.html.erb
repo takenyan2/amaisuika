@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
      <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheets" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css">
   </head>
@@ -13,7 +13,9 @@
   <body>
     <header>
         <% if user_signed_in?  %>
+
             <!-- 一般ユーザーログイン時のヘッダー -->
+
             <% if current_user.user_status == "一般ユーザー" %>
                 <nav class="navbar navbar-default" style="background-color: rgba(0,0,0,0.0)>
                   <div class="container-fluid">
@@ -51,6 +53,7 @@
             <% end %>
 
             <!-- 管理者ログイン時のヘッダー -->
+
             <% if current_user.user_status == "管理者" %>
             <nav class="navbar navbar-default">
               <div class="container-fluid">
@@ -85,13 +88,17 @@
               </div>
             </nav>
             <% end %>
+
             <!-- ショップオーナーログイン時のヘッダー -->
+
         <% elsif shop_signed_in? %>
           <div style="background-color: #BBF994; text-align: center; ">
           <h1 class= "out-shop text" style="margin-right: 3%; font-size: 50px; margin-top: 0px;"><%= link_to "最初の画面に戻る", shop_main_path(current_shop.id),class: "label label-success text" %></h1>
           <h1 class= "out-shop text" style="margin-right: 3%; font-size: 50px; margin-top: 0px;"><%= link_to "お店から出る",  destroy_shop_session_path, "data-confirm" => "お店から出ますか？", method: :delete, class: "label label-danger text" %></h1>
           </div>
+
             <!-- ログアウト時のヘッダー -->
+
         <% else %>
             <nav class="navbar navbar-default">
               <div class="container-fluid">

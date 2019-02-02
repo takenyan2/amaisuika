@@ -37,7 +37,7 @@ class DeviseCreateShops < ActiveRecord::Migration[5.2]
       t.string :shop_introduction
       t.string :shop_image_id
       t.integer :send_period
-      t.integer :shop_phone_number
+      t.string :shop_phone_number
       t.datetime :shop_deleted_at
       t.timestamps null: false
     end

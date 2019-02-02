@@ -38,7 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :user_image_id
       t.integer :postal_code
       t.string :address
-      t.integer :phone_number
+      t.string :phone_number
       t.datetime :user_deleted_at
       t.integer :user_status, default: 0
       t.timestamps null: false

@@ -93,22 +93,42 @@
 				</div>
 
 				<div class="product-favorite-cart" style="display: flex;">
-					<% elsif shop_signed_in? || current_user.user_status == "管理者" %>
-						<% if @product.favorited_by?(current_user) %>
-			              	<%= link_to  product_favorites_path(@product), method: :delete do %>
-			                	<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-			             	<% end %>
-			            	<div class="favorite-text text"><%= @product.favorites.count %>件のお気に入り</div>
+					<% elsif shop_signed_in? || user_signed_in? %>
+
+						<% if user_signed_in? && current_user.user_status == "管理者"%>
+							<% if @product.favorited_by?(current_user) %>
+				              	<%= link_to  product_favorites_path(@product), method: :delete do %>
+				                	<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+				             	<% end %>
+				            	<div class="favorite-text text"><%= @product.favorites.count %>件のお気に入り</div>
+					        <% elsif current_shop %>
+				            	<%= link_to  product_favorites_path(@product), method: :post do %>
+				                	<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: gray;"></span>
+				            	<% end %>
+				            	<div class="favorite-text text"><%#= @product.favorites.count %>お気に入りに登録</div>
+					         <% end %>
+					    	<div class="product-edit">
+				            <h1 class="admin-edit"><%=link_to "この商品を編集", edit_product_path(@product.id) ,class: "label label-success text" %></h1>
+				            <h1 class="admin-destroy"><%=link_to "この商品を削除", product_path(@product.id), "data-confirm" => "本当に削除しますか？", method: :delete , class: "label label-danger text" %></h1>
+				        </div>
 				        <% else %>
-			            	<%= link_to  product_favorites_path(@product), method: :post do %>
-			                	<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: gray;"></span>
-			            	<% end %>
-			            	<div class="favorite-text text"><%#= @product.favorites.count %>お気に入りに登録</div>
-				         <% end %>
-				    <div class="product-edit">
-			            <h1 class="admin-edit"><%=link_to "この商品を編集", edit_product_path(@product.id) ,class: "label label-success text" %></h1>
-			            <h1 class="admin-destroy"><%=link_to "この商品を削除", product_path(@product.id), "data-confirm" => "本当に削除しますか？", method: :delete , class: "label label-danger text" %></h1>
-			        </div>
+				        	<% if @product.favorited_by?(current_user) %>
+				              	<%= link_to  product_favorites_path(@product), method: :delete do %>
+				                	<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+				             	<% end %>
+				            	<div class="favorite-text text"><%= @product.favorites.count %>件のお気に入り</div>
+					        <% else %>
+				            	<%= link_to  product_favorites_path(@product), method: :post do %>
+				                	<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: gray;"></span>
+				            	<% end %>
+				            	<div class="favorite-text text"><%#= @product.favorites.count %>お気に入りに登録</div>
+					         <% end %>
+					    	<div class="product-edit">
+				            <h1 class="admin-edit"><%=link_to "この商品を編集", edit_product_path(@product.id) ,class: "label label-success text" %></h1>
+				            <h1 class="admin-destroy"><%=link_to "この商品を削除", product_path(@product.id), "data-confirm" => "本当に削除しますか？", method: :delete , class: "label label-danger text" %></h1>
+				        </div>
+				        <% end %>
+
 					<% end %>
 				</div>
 

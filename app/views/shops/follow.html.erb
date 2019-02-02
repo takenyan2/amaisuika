@@ -18,11 +18,13 @@
 								<div style=" display: flex; margin-bottom: 20px;">
 									<%= attachment_image_tag follow.user, :user_image, format: 'jpeg', fallback: "/no_image.jpg", size: "100x100", class: "user-image" %></br>
 									<div style="display: block;" >
-										<h3 style="margin-top: 0px; margin-left: 15px;">ニックネーム：<%= follow.user.nick_name %></h3>
+										<h3 class="text" style="margin-top: 0px; margin-left: 15px;">ニックネーム：<%= follow.user.nick_name %></h3>
 										<% if follow.user.user_deleted_at.nil? %>
-										<h4 style="margin-top: 5px; margin-left: 15px;">一般ユーザー</h4>
+										<h4 class="text" style="margin-top: 5px; margin-left: 15px;">一般ユーザー</h4>
 										<% else %>
-										退会日時：<%= follow.user.user_deleted_at %>
+											<div class="text">
+												退会日時：<%= follow.user.user_deleted_at %>
+											</div>
 										<% end %>
 									</div>
 								</div>

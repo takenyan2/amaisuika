@@ -18,6 +18,7 @@
 @import "bootstrap";
 
 /*--------------- 共通 ---------------*/
+
 * {
   margin: 0;
   padding: 0;
@@ -62,9 +63,11 @@ display: inline-block;
 
 .back-image{
 	/*background-color:#FFFF99;*/
-	background-image:url("/dmitry-bayer-348230-unsplashhhhh.jpg");
+	background-image: url("/dmitry-bayer-348230-unsplas1.jpg");
 	background-size: cover;
 }
+
+
 
 .footer-color{
 	background-color:#FFFFBB;
@@ -91,7 +94,9 @@ a:hover {
 .login-shop-image{
 	width:15%;
 }
+
 /*--------------- header ---------------*/
+
 header {
 	height: 60px;
 	width: 100%;
@@ -125,7 +130,8 @@ header {
 
 /*--------------- レスポンシブ対応 ---------------*/
 
-/* タブレット横置き(1024px)程度の大きさ以下に適用される設定です */
+/* タブレット横置き(1024px)程度の大きさ以下に適用 */
+
 @media screen and (max-width:1024px) {
 
 
@@ -133,14 +139,16 @@ header {
 
 }
 
-/* タブレット縦置きサイズ(768px)程度の画面の大きさ以下に適用される設定です */
+/* タブレット縦置きサイズ(768px)程度の画面の大きさ以下に適用 */
+
 @media screen and (max-width:768px) {
 
 
 
 }
 
-/* スマートフォンサイズ(425px)程度の画面の大きさ以下に適用される設定です */
+/* スマートフォンサイズ(425px)程度の画面の大きさ以下に適用 */
+
 @media screen and (max-width:425px) {
 .container{
 	width:100%;

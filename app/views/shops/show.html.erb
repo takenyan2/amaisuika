@@ -1,85 +1,93 @@
 <div class="back-image">
-<div class="back-color">
-<div class=shop-main>
-	<div class=shop-sub-main>
-		<div class="container">
-		<div class="row">
-		<% if @shop.shop_deleted_at == nil %>
-			<div class="col-lg-12 col-sm-12 col-xs-12">
-				<div class="shop-name-prefecture" style="width:100%; height:150px; margin-top: 100px;">
-					<div class="shop-main-title text"><h1 style="font-size: 60px;">【<%= @shop.shop_name %>】</h1></div>
-					<div class="shop-prefecture text"><h2 style="text-align: right;"><%= @shop.prefecture %></br></h2></div>
-				</div>
-				<div class="shop-main-image clearfix">
-					<%= attachment_image_tag @shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg" %></br>
-				</div>
-
-				<div class="shop-sub-titile" style="width:100%; height:100px;">
-					<% if user_signed_in? %>
-						<div class="shop-follow">
-				          	<% if @shop.favorited_by?(current_user) %>
-				              	<%= link_to shop_follows_path(@shop), method: :delete do %>
-				                	<%= image_tag("/42886.png", :size => "60x60") %>
-				            	<%#= @shop.follows.count %><h2 class="text" style="display: inline-block;">フォロー中</h2>
-				            	<% end %>
-				        	<% else %>
-				            	<%= link_to shop_follows_path(@shop), method: :post do %>
-				                  	<%= image_tag("/42884.png", :size => "60x60") %>
-				            	<%#= @shop.follows.count %><h2 class="text" style="display: inline-block;">フォローする</h2>
-				            	<% end %>
-				         	<% end %>
-				        </div>
-			        <% end %>
-
-			        <% if current_shop || @user.user_status == "管理者" %>
-				        <div class="shop-edit" style="display: flex; display: inline-block;">
-							<h1 class="admin-edit text" style="font-size: 38px;"><%=link_to "このお店を編集", edit_shop_path(@shop.id),class: "label label-success text", style: "display:block" %></h1>
-							<h1 class="admin-destroy text" style="font-size: 38px;"><%=link_to "このお店を削除", shop_path(@shop.id), "data-confirm" => "本当に削除しますか？", method: :delete, class: "label label-danger" %></h1></br>
+	<div class="back-color">
+		<div class=shop-main>
+			<div class=shop-sub-main>
+				<div class="container">
+				<div class="row">
+				<% if @shop.shop_deleted_at == nil %>
+					<div class="col-lg-12 col-sm-12 col-xs-12">
+						<div class="shop-name-prefecture" style="width:100%; height:150px; margin-top: 100px;">
+							<div class="shop-main-title text"><h1 style="font-size: 60px;">【<%= @shop.shop_name %>】</h1></div>
+							<div class="shop-prefecture text"><h2 style="text-align: right;"><%= @shop.prefecture %></br></h2></div>
 						</div>
-					<% end %>
-				</div>
-				<div class="shop-main-info text clearfix" style="margin-top: 30px;">
-					配送期間：<%= @shop.send_period %>日以内</br>
-					お問合せ先：<%= @shop.shop_phone_number %></br>
-					【店舗情報】</br>
-					<%= @shop.shop_introduction %></br>
-				</div>
+						<div class="shop-main-image clearfix">
+							<%= attachment_image_tag @shop, :shop_image, format: 'jpeg', fallback: "/no_image.jpg" %></br>
+						</div>
 
-				<div class="shop-product-info clearfix">
-					<h2 class="text">〔このお店の商品〕</h2>
-					<div class="user-products clearfix">
-		        	<div class="user-favorites clearfix">
-						<% @shop.products.each do |product| %>
-							<% if product.permission == false %>
-				        		<div class="product-info">
-									<%= link_to product_path(product.id),style: "display:inline-block;" do %>
-										<div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
-										<div class="product-title" style="width:100%; height:50px;">
-											<h3 class="product-name text"><%=product.product_name %></br></h3>
-											<h4 class="product-sub-price text"><%=product.product_price %>円</br></h4>
-											<div class="product-introduction text" style="width:100%; height:150px;"><%=product.product_introduction %></br></div>
-										</div>
-										<% if shop_signed_in? %>
-										<div style="margin-top:10px; text-align: right;">
-											<%=link_to "編集", edit_product_path(product.id),class: "label label-success text", style: "font-size: 20px; margin-right:8px;" %>
-											<%=link_to "削除", product_path(product.id), "data-confirm" => "本当に削除しますか？", method: :delete,class: "label label-danger text", style: "font-size: 20px;" %></br>
-										</div>
-										<% end %>
-									<% end %>
-								</div>
+						<div class="shop-sub-titile">
+							<% if user_signed_in? %>
+								<div class="shop-follow">
+						          	<% if @shop.favorited_by?(current_user) %>
+						              	<%= link_to shop_follows_path(@shop), method: :delete do %>
+						                	<%= image_tag("/42886.png", :size => "60x60") %>
+						            	<%#= @shop.follows.count %><h2 class="text" style="display: inline-block;">フォロー中</h2>
+						            	<% end %>
+						        	<% else %>
+						            	<%= link_to shop_follows_path(@shop), method: :post do %>
+						                  	<%= image_tag("/42884.png", :size => "60x60") %>
+						            	<%#= @shop.follows.count %><h2 class="text" style="display: inline-block;">フォローする</h2>
+						            	<% end %>
+						         	<% end %>
+						        </div>
+					        <% end %>
+
+					        <% if shop_signed_in? || user_signed_in?%>
+								<% if user_signed_in? && current_user.user_status == "管理者"%>
+							        <div class="shop-edit" style="display: flex; display: inline-block;">
+										<h1 class="admin-edit text" style="font-size: 38px;"><%=link_to "このお店を編集", edit_shop_path(@shop.id),class: "label label-success text", style: "display:block" %></h1>
+										<h1 class="admin-destroy text" style="font-size: 38px;"><%=link_to "このお店を削除", shop_path(@shop.id), "data-confirm" => "本当に削除しますか？", method: :delete, class: "label label-danger" %></h1></br>
+									</div>
+								<% elsif current_shop %>
+									<div class="shop-edit" style="display: flex; display: inline-block;">
+										<h1 class="admin-edit text" style="font-size: 38px;"><%=link_to "このお店を編集", edit_shop_path(@shop.id),class: "label label-success text", style: "display:block" %></h1>
+										<h1 class="admin-destroy text" style="font-size: 38px;"><%=link_to "このお店を削除", shop_path(@shop.id), "data-confirm" => "本当に削除しますか？", method: :delete, class: "label label-danger" %></h1></br>
+									</div>
+								<% end %>
 							<% end %>
-						<% end %>
+
+						</div>
+						<div class="shop-main-info text clearfix" style="margin-top: 30px;">
+							配送期間：<%= @shop.send_period %>日以内</br>
+							お問合せ先：<%= @shop.shop_phone_number %></br>
+							【店舗情報】</br>
+							<%= @shop.shop_introduction %></br>
+						</div>
+
+						<div class="shop-product-info clearfix">
+							<h2 class="text">〔このお店の商品〕</h2>
+							<div class="user-products clearfix">
+				        	<div class="user-favorites clearfix">
+								<% @shop.products.each do |product| %>
+									<% if product.permission == false %>
+						        		<div class="product-info">
+											<%= link_to product_path(product.id),style: "display:inline-block;" do %>
+												<div class="product-image"><%= attachment_image_tag product.images[0], :product_image,  format: 'jpeg', fallback: "/no_image.jpg", size: "100x100" %></br></div>
+												<div class="product-title" style="width:100%; height:50px;">
+													<h3 class="product-name text"><%=product.product_name %></br></h3>
+													<h4 class="product-sub-price text"><%=product.product_price %>円</br></h4>
+													<div class="product-introduction text" style="width:100%; height:150px;"><%=product.product_introduction %></br></div>
+												</div>
+												<% if shop_signed_in? %>
+												<div style="margin-top:10px; text-align: right;">
+													<%=link_to "編集", edit_product_path(product.id),class: "label label-success text", style: "font-size: 20px; margin-right:8px;" %>
+													<%=link_to "削除", product_path(product.id), "data-confirm" => "本当に削除しますか？", method: :delete,class: "label label-danger text", style: "font-size: 20px;" %></br>
+												</div>
+												<% end %>
+											<% end %>
+										</div>
+									<% end %>
+								<% end %>
+							</div>
+							</div>
+						</div>
 					</div>
-					</div>
+
+				<% else %>
+					<h1>このお店は存在しません。</h1>
+				<% end %>
+				</div>
 				</div>
 			</div>
-
-		<% else %>
-		<h1>このお店は存在しません。</h1>
-		<% end %>
-		</div>
 		</div>
 	</div>
-</div>
-</div>
 </div>
